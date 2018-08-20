@@ -204,8 +204,16 @@ class Edit extends Component {
             { this.addInputRender() }
             <button
               type="button"
+              className="edit__button edit__button--close">
+            </button>
+            <button
+              type="button"
               className="edit__button edit__button--plus"
               onClick={this.addInput}>
+            </button>
+            <button
+              type="submit"
+              className="edit__button edit__button--submit">
             </button>
           </div>
         </div>
