@@ -1,0 +1,42 @@
+.tabs {
+  &__menu {
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__list {
+    list-style-type: none;
+    display: inline-block;
+    background-color: $color_mint;
+    color: $color_white;
+    width: 100%;
+    padding: 20px;
+  }
+
+  &__inner {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__box {
+    list-style-type: none;
+    display: inline-block;
+    width: calc(100% / 3);
+  }
+
+  &__link {
+    color: $color_black;
+  }
+
+  &__img {
+    max-width: 100%;
+  }
+
+  &__text {
+    display: block;
+  }
+}

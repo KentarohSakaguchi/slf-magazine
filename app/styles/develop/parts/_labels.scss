@@ -1,0 +1,85 @@
+.labels {
+  font-size: 0;
+  white-space: nowrap;
+
+  @add-mixin sm {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__link {
+    display: inline-block;
+    padding: 0.8rem 0;
+    font-size: $fs_ss;
+  }
+
+  &__main {
+    color: $color_white;
+    font-weight: $fw_bold;
+    padding: 0.8rem;
+
+    &--ruby {
+      background-color: #cc0000;
+    }
+
+    &--javascript {
+      background-color: #ffde00;
+      color: $color_black;
+    }
+
+    &--css {
+      background-color: #0070ba;
+    }
+
+    &--html {
+      background-color: #e34c36;
+    }
+
+    &--php {
+      background-color: #777bb3;
+    }
+
+    &--python {
+      background-color: #3776ab;
+    }
+
+    &--go {
+      background-color: #01d9e8;
+    }
+  }
+
+  &__sub {
+    background-color: $color_white;
+    padding: calc(0.8rem - 0.4rem);
+    box-sizing: border-box;
+    color: $color_black;
+
+    &--ruby {
+      border: 0.4rem solid #cc0000;
+    }
+
+    &--javascript {
+      border: 0.4rem solid #ffde00;
+    }
+
+    &--css {
+      border: 0.4rem solid #0070ba;
+    }
+
+    &--html {
+      border: 0.4rem solid #e34c36;
+    }
+
+    &--php {
+      border: 0.4rem solid #777bb3;
+    }
+
+    &--python {
+      border: 0.4rem solid #3776ab;
+    }
+
+    &--go {
+      border: 0.4rem solid #01d9e8;
+    }
+  }
+}

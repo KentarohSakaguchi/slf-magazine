@@ -1,0 +1,51 @@
+html,
+body {
+  width: 100%;
+}
+
+main {
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  font-family: Catamaran, Sawarabi Gothic, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+dl,
+dt,
+dd {
+  margin: 0;
+}
+
+p {
+  margin: 0.8rem 0 0;
+}
+
+.article {
+  margin-top: calc(0.8rem * 10 + 0.8rem * 8);
+
+  @add-mixin sm {
+    margin-top: 1.6rem;
+  }
+}

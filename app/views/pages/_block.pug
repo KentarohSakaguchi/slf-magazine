@@ -1,0 +1,137 @@
+section.blocks
+  .blocks__box
+    .blocks__inner
+      header.blocks__header
+        h2.blocks__title ruby on rails5でコントローラーを作りました。
+        include ../mixin/_label
+        +Label('ruby', 'ruby on rails5')
+      section.blocks__text
+        .blocks__time
+          p 2017.10.21
+        .blocks__text-title
+          h3.blocks__title コントローラーの作成
+        .blocks__paragraph
+          p まず下記のコマンドを入力「test」は作成するコントローラーの名前ここではtestとする
+          pre.blocks__code
+            code.ruby
+              | rails generate controller test
+        .blocks__paragraph
+          dl.blocks__description
+            dt.blocks__description-title コントローラとは
+            dd.blocks__description-text 全体の制御で使うもの
+          dl.blocks__description
+            dt.blocks__description-title コントローラーで作られる主なファイル
+            dd.blocks__description-text test_controller.rb/ コントローラのファイル
+            dd.blocks__description-text 「test」フォルダ/ viewを用意するために作るファイル
+        .blocks__paragraph
+          p コントローラーを作成したらコントローラのファイルにアクションを追加する
+          pre.blocks__code
+            code.ruby
+              | class TestController < ApplicationController
+              | end
+          p 上記のファイルが自動生成されるのでアクションをファイルに書いていく
+          p コントローラーを作成したらアクションを追加する
+          pre.blocks__code
+            code.ruby
+              | class TestController < ApplicationController
+              |  def testMethod
+              |   render plain: 'こんにちわ'
+              |  end
+              | end
+          .blocks__code-preview
+            code.blocks__code-preview-text
+              p def testMethod（メソッド名）
+              P やりたい処理
+              p end
+        .blocks__paragraph
+          h3.blocks__title コントローラーとアクションの呼び出し
+        .blocks__paragraph
+          p アクションはrailsでは下記のアドレスで呼び出す
+          .blocks__code-preview
+            code.blocks__code-preview-text
+              p http://ドメイン/コントローラー名/アクション名
+        .blocks__paragraph
+          dl.blocks__description
+            dt.blocks__description-title ルーティングについて
+            dd.blocks__description-text ルーティングとはアクセスしたアドレスと呼び出されるアクションの関係を設定すること
+            dd.blocks__description-text ルーティングに「コントローラ/アクション」の情報がないと「Routing Error」となりコントローラーとアクションが呼び出せない。
+            dd.blocks__description-text ルーティングファイルは「config」ディレクトリの「routes.rb」
+          .blocks__description
+            .blocks__description-title ルーティングファイルの設定
+            .blocks__paragraph
+              p routes.rbをひらくと下のようになっているので情報を追加していく
+              pre.blocks__code
+                code.ruby
+                  | Rails.application.routes.draw do
+                  |   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+                  | end
+              p getメソッドでコントローラとアクションを追加する
+              pre.blocks__code
+                code.ruby
+                  | Rails.application.routes.draw do
+                  |   get 'test/testMethod'
+                  |   get 'testtest', to: 'test#testMethod'
+                  | end
+              p 2行でgetメソッドで追加している
+              .blocks__code-preview
+                code.blocks__code-preview-text
+                  p get 'コントローラー/アクション'
+              p 3行目は書かなくてもOKだが、アドレスを明示的に示したいときに使う
+              .blocks__code-preview
+                code.blocks__code-preview-text
+                  p get 'アドレス名（好きなものでOK）', to: 'コントローラー#アクション'
+              p 2行目だと「http://localhost:3000/test/testMethod」でアクセスできる
+              P 3行目だと「http://localhost:3000/testtest」でアクセスできる
+        .blocks__paragraph
+          h3.blocks__title HTMLを表示させる
+        .blocks__paragraph
+          p HTMLを表示させるためにtest_controller.rbを書き換える
+          pre.blocks__code
+            code.ruby
+              | class TestController < ApplicationController
+              |   def testMethod
+              |     msg = '
+              |       < html>
+              |         < body>
+              |           < p>テスト</ p>
+              |         < /body>
+              |       < /html>
+              |     '
+              |     render html: msg.html_safe
+              |   end
+              | end
+          p 変数msgにhtmlコードをいれる、10行目の render htmlでhtml出力’< ’などがエスケープされるので10行目で「.html_safe」をつける
+        .blocks__paragraph
+          h3.blocks__title パラメータで表示を変える
+        .blocks__paragraph
+          p パラメータで処理を変えるためにtest_controller.rbを書き換える
+          pre.blocks__code
+            code.ruby
+              | class TestController < ApplicationController
+              |   def testMethod
+              |     if params['para'] != nil then
+              |       msg = 'こんにちわ' + params['para']
+              |     else
+              |       msg = 'パラメータがありません'
+              |     end
+              |   
+              |     tags = '
+              |       < html>
+              |         < body>
+              |           < p>' + msg + '< /p>
+              |         < /body>
+              |       < /html>
+              |     '
+              |     render html: tags.html_safe
+              |   end
+              | end
+          p railsではパラメータ情報は「params[]」に格納される、1行目でパラメータが空か判定
+          p 配列の中身はクエリの名前が入る
+          P パラメータが「para=abc」の時は「こんにちはabc」と表示される。
+
+
+
+
+
+
+
