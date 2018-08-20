@@ -16,6 +16,7 @@
       "ignoreAtRules": ["define-mixin", "add-mixin", "mixin-content", "mixin"]
     }],
     "color-hex-length": null,
-    "font-family-no-missing-generic-family-keyword": null
+    "font-family-no-missing-generic-family-keyword": null,
+    "no-descending-specificity": null
   }
 }
