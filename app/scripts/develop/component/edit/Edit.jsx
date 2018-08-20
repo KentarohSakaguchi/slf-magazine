@@ -23,6 +23,8 @@ class Edit extends Component {
     this.addInputRender = this.addInputRender.bind(this);
     this.addTextRender = this.addTextRender.bind(this);
     this.textValueChangeRemove = this.textValueChangeRemove.bind(this);
+    this.editClose = this.editClose.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.selectValueList = [
       { value: 'h3', text: '中見出し' },
@@ -166,6 +168,14 @@ class Edit extends Component {
     });
   }
 
+  editClose() {
+    console.log('editClose');
+  }
+
+  onSubmit() {
+    console.log('onSubmit');
+  }
+
   render() {
     console.log(this.textArray);
     return(
@@ -204,7 +214,8 @@ class Edit extends Component {
             { this.addInputRender() }
             <button
               type="button"
-              className="edit__button edit__button--close">
+              className="edit__button edit__button--close"
+              onClick={this.editClose}>
             </button>
             <button
               type="button"
@@ -213,7 +224,8 @@ class Edit extends Component {
             </button>
             <button
               type="submit"
-              className="edit__button edit__button--submit">
+              className="edit__button edit__button--submit"
+              onClick={this.onSubmit}>
             </button>
           </div>
         </div>
