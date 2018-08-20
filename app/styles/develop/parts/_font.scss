@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'slffont';
+  src: url('../../fonts/slffont.eot');
+  src: url('../../fonts/slffont.eot?#iefix') format('eot'), url('../../fonts/slffont.woff2') format('woff2'), url('../../fonts/slffont.woff') format('woff'), url('../../fonts/slffont.ttf') format('truetype'), url('../../fonts/slffont.svg#slffont') format('svg');
+}
+
+@mixin font {
+  font-family: 'slffont';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  text-decoration: none;
+  text-transform: none;
+}

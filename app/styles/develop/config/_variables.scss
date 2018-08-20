@@ -1,0 +1,40 @@
+/* 変数　*/
+
+/* フォントファミリー */
+$font_set_01: 'PT Serif', sans-serif;
+
+/* break point */
+$dev_xs: 320px;
+$dev_sm: 768px;
+$dev_md: 992px;
+$dev_lg: 1266px;
+
+/* font-size */
+$fs_sx: 1rem;
+$fs_ss: 1.2rem;
+$fs_ms: 1.4rem;
+$fs_mm: 1.6rem;
+$fs_mx: 1.8rem;
+$fs_xs: 2.0rem;
+$fs_xm: 2.2rem;
+$fs_xx: 2.4rem;
+$fs_bg: 2.8rem;
+$fs_bg_mx: 4rem;
+
+/* z-index */
+$z_max: 9999;
+
+/* radius */
+$r_min: .4rem;
+$r_mid: .8rem;
+$r_max: 1.6rem;
+
+/* font-weight */
+$fw_min: 300;
+$fw_nomal: 500;
+$fw_bold: 700;
+
+/* transition */
+$tr_base: all .2s ease;
+$tr_slow: all .5s ease;
+

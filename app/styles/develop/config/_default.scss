@@ -1,0 +1,35 @@
+/* デフォルトのスタイル */
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $font_set_01;
+  letter-spacing: 0.1rem;
+  color: $color_black;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+}

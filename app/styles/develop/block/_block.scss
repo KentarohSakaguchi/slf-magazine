@@ -1,0 +1,90 @@
+.blocks {
+  & + & {
+    margin-top: 3.2rem;
+  }
+
+  &__box {
+    width: 90vw;
+    margin: auto;
+    border: 0.4rem solid $color_black;
+
+    & + & {
+      margin-top: 3.2rem;
+    }
+  }
+
+  &__header {
+    font-size: $fs_xs;
+    padding: 1.6rem 3.2rem;
+    border-bottom: 0.4rem solid $color_black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @add-mixin sm {
+      display: block;
+      padding: 0.8rem 1.6rem;
+    }
+  }
+
+  &__title {
+    font-size: $fs_xs;
+  }
+
+  &__text {
+    font-size: $fs_mm;
+    padding: 1.6rem 3.2rem;
+
+    @add-mixin sm {
+      padding: 0.8rem 1.6rem;
+    }
+
+    .blocks__title {
+      font-size: $fs_mx;
+      background-color: $color_mint_alpha;
+      padding: 0.8rem;
+    }
+  }
+
+  &__time {
+    text-align: right;
+  }
+
+  &__paragraph {
+    font-size: $fs_ms;
+    margin-top: 3.2rem;
+  }
+
+  &__description {
+    & + & {
+      margin-top: 1.6rem;
+    }
+  }
+
+  &__description-title {
+    font-size: $fs_mm;
+    border-bottom: 0.4rem solid $color_mint;
+    display: inline-block;
+    padding: 0.4rem;
+  }
+
+  &__description-text {
+    margin-top: 1.6rem;
+  }
+
+  &__code-preview {
+    margin-top: 0.8rem;
+    padding: 0.4rem;
+    background-color: $color_white_gray;
+  }
+
+  &__code-preview-text {
+    p {
+      margin-top: 0;
+    }
+  }
+
+  &__link {
+    color: $color_mint;
+  }
+}

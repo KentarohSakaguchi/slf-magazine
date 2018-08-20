@@ -1,0 +1,20 @@
+.footer {
+  width: 100%;
+  background-color: $color_mint;
+  height: 16rem;
+  display: flex;
+  align-items: center;
+  margin-top: 6.4rem;
+
+  &__inner {
+    width: 90vw;
+    margin: auto;
+  }
+
+  &__copy {
+    color: $color_white;
+    width: 100%;
+    text-align: center;
+    font-size: $fs_ss;
+  }
+}

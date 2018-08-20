@@ -1,0 +1,11 @@
+mixin Label(type, text)
+  -var classNameMain = 'labels__main labels__main--'
+  -var classNameSub = 'labels__sub labels__sub--'
+  -classNameMain += type
+  -classNameSub += type
+
+  .labels
+    a(href='#').labels__link
+      span(class=classNameMain)=type
+    a(href='#').labels__link
+      span(class=classNameSub)=text

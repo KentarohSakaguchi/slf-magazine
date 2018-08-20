@@ -1,0 +1,154 @@
+.edit-wrapper {
+  padding-bottom: 55vh;
+}
+
+.edit {
+  width: 100%;
+  height: 50vh;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: rgba($color_white, 0.5);
+
+  &__inner {
+    padding: 3.2rem 0;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  &__input-block {
+    width: 90%;
+    margin: auto;
+    position: relative;
+    display: flex;
+
+    & + & {
+      margin-top: 1.6rem;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    border: 1px solid $color_gray;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    padding: 1.6rem;
+    font-size: $fs_mm;
+    height: 60px;
+    display: inline-block;
+  }
+
+  &__input-input {
+    width: 100%;
+    background-color: $color_white_gray2;
+    font-size: $fs_mm;
+    height: 60px;
+    display: inline-block;
+  }
+
+  &__input-title {
+    width: 16rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+    background-color: $color_pink;
+    color: $color_white;
+    font-size: $fs_mm;
+    font-weight: bold;
+    height: 6rem;
+    line-height: 3rem;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+
+    & + .edit__input-input {
+      .edit__input {
+        border-left: none;
+        border-radius: 0 0.5rem 0.5rem 0;
+      }
+    }
+
+    &::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0.8rem 0.4rem 0 0.4rem;
+      border-color: $color_white transparent transparent transparent;
+      display: inline-block;
+      position: absolute;
+      right: 1.6rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &--lang {
+      background-color: $color_light_blue;
+    }
+  }
+
+  &__input-select {
+    appearance: none;
+    border: none;
+    height: 6rem;
+    padding: 1.6rem;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  &__button {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    background-color: $color_pink;
+    border: none;
+    position: absolute;
+    right: 1.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: $tr_base;
+
+    &::after {
+      content: '';
+      width: 80%;
+      height: 2px;
+      background-color: $color_white;
+      margin: auto;
+      display: block;
+    }
+
+    &:hover {
+      background-color: rgba($color_pink, 0.5);
+    }
+
+    &--plus {
+      background-color: $color_mint;
+      width: 4.8rem;
+      height: 4.8rem;
+      bottom: 3.2rem;
+      right: 3.2rem;
+      top: auto;
+      transform: translateY(0);
+
+      &::before {
+        content: '';
+        width: 2px;
+        height: 60%;
+        background-color: $color_white;
+        margin: auto;
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+
+      &:hover {
+        background-color: rgba($color_mint, 0.5);
+      }
+
+      &:active {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+$dev-xs: 320px;
+$dev-sm: 768px;
+$dev-md: 992px;
+$dev-lg: 1266px;
+
+@define-mixin xs {
+  @media(min-width: $dev-xs) {
+    @mixin-content
+  }
+}
+
+@define-mixin sm {
+  @media(max-width: $dev-sm) {
+    @mixin-content
+  }
+}
+
+@define-mixin md {
+  @media(min-width: $dev-md) {
+    @mixin-content
+  }
+}
+
+@define-mixin lg {
+  @media(min-width: $dev-lg) {
+    @mixin-content
+  }
+}
+
+@define-mixin clearfix {
+  &::after {
+    display: block;
+    clear: both;
+    content: '';
+  }
+}
