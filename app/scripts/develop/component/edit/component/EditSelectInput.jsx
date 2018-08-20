@@ -82,7 +82,8 @@ EditSelectInput.propTypes = {
   selectValueList: PropTypes.array,
   textValueChange: PropTypes.func,
   textValue: PropTypes.string,
-  textId: PropTypes.string
+  textId: PropTypes.string,
+  valueRemove: PropTypes.func
 }
 
 export default EditSelectInput;

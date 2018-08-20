@@ -58,7 +58,8 @@ class EditTextRender extends Component {
 EditTextRender.propTypes = {
   textValue: PropTypes.string,
   selectValue: PropTypes.string,
-  selectValueList: PropTypes.array
+  selectValueList: PropTypes.array,
+  textId: PropTypes.string
 }
 
 export default EditTextRender;
