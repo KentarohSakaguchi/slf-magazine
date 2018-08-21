@@ -24,7 +24,8 @@ class Edit extends Component {
     this.addTextRender = this.addTextRender.bind(this);
     this.textValueChangeRemove = this.textValueChangeRemove.bind(this);
     this.editClose = this.editClose.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onRec = this.onRec.bind(this);
+    this.cancel = this.cancel.bind(this);
 
     this.selectValueList = [
       { value: 'h3', text: '中見出し' },
@@ -47,7 +48,9 @@ class Edit extends Component {
       selectValue: this.selectArray,
       textLangValue: '',
       selectLangValue: this.langList[0],
-      input: 0
+      input: 0,
+      activeClass: '',
+      submitClass: ''
     };
 
     this.addFlg = false;
@@ -168,18 +171,42 @@ class Edit extends Component {
     });
   }
 
+  /**
+   * edit項目を非表示に
+   */
   editClose() {
-    console.log('editClose');
+    if (this.state.activeClass !== 'is-hide') {
+      this.setState({ activeClass: 'is-hide'});
+    } else {
+      this.setState({ activeClass: ''});
+    }
   }
 
-  onSubmit() {
-    console.log('onSubmit');
+  /**
+   * 記録ボタン(hidenにvalueをset)
+   */
+  onRec() {
+    const saveTarget = document.getElementsByClassName('blocks');
+    const saveHtml = saveTarget[0].outerHTML;
+    const saveHtmlSet = document.getElementById('js-saveHtml');
+    saveHtmlSet.setAttribute('value', saveHtml);
+
+    if (this.state.submitClass !== 'is-show') {
+      this.setState({ submitClass: 'is-show'});
+    }
+  }
+
+  cancel() {
+    if (this.state.submitClass === 'is-show') {
+      this.setState({ submitClass: ''});
+    }
   }
 
   render() {
     console.log(this.textArray);
     return(
       <div className="edit-wrapper">
+        <input type="hidden" name="save" id="js-saveHtml"/>
         <section className="blocks">
           <div className="blocks__box">
             <div className="blocks__inner">
@@ -198,7 +225,7 @@ class Edit extends Component {
           </div>
         </section>
 
-        <div className="edit">
+        <div className={`edit ${this.state.activeClass}`}>
           <div className="edit__inner">
             <EditInput
               headerValue={this.state.pageTitle}
@@ -212,6 +239,8 @@ class Edit extends Component {
               selectLangValueChange={this.selectValueChangeLang}
             />
             { this.addInputRender() }
+          </div>
+          <div className="edit__button-wrapper">
             <button
               type="button"
               className="edit__button edit__button--close"
@@ -223,10 +252,25 @@ class Edit extends Component {
               onClick={this.addInput}>
             </button>
             <button
-              type="submit"
-              className="edit__button edit__button--submit"
-              onClick={this.onSubmit}>
+              type="button"
+              className="edit__button edit__button--rec"
+              onClick={this.onRec}>
             </button>
+          </div>
+          <div className={`edit__button-wrapper edit__button-wrapper--submit ${this.state.submitClass}`}>
+            <div className="button-wrapper">
+              <button
+                type="submit"
+                className="button button--submit">
+                SUBMIT
+              </button>
+              <button
+                type="button"
+                className="button button--ng"
+                onClick={this.cancel}>
+                CANCEL
+              </button>
+            </div>
           </div>
         </div>
 
