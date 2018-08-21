@@ -7,7 +7,6 @@ import ReactDOM from 'react-dom';
 import hljs from 'highlight.js'
 
 import Edit from '../component/edit/Edit';
-import Test from '../component/Test';
 // import Mount from '../component/Mount';
 
 const edit = document.getElementById('js-edit');
