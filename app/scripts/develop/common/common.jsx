@@ -28,15 +28,6 @@ if ([edit][0] !== null) {
 // }
 
 
-const tests = document.getElementById('test');
-
-if ([tests][0] !== null) {
-  ReactDOM.render(
-    <Test />, tests
-  );
-}
-
-
 hljs.initHighlightingOnLoad();
 
 
