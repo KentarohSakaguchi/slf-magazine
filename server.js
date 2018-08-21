@@ -53,6 +53,22 @@ server.on('request', (req, res) => {
     res.end();
   };
 
+  if (req.method === 'POST') {
+    let body = '';
+    req.on('data', (data) => {
+      console.log(data);
+      body = data;
+    });
+
+    req.on('end', () => {
+      console.log(body);
+      const vvv = qs.parse(body);
+      console.log('!!');
+      console.log(vvv);
+      res.end();
+    });
+  }
+
   switch (filename) {
 
     case 'css':
@@ -136,7 +152,6 @@ server.on('request', (req, res) => {
       responseWrite('text/html', content);
       break;
   }
-
 
 });
 
