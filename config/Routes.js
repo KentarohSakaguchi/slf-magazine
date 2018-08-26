@@ -52,7 +52,7 @@
 
   } else if(urlPath.indexOf('/result') >= 0) {
 
-    return 'html';
+    return 'post';
 
   } else {
 
