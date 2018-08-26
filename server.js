@@ -5,9 +5,7 @@
  */
 
 const http = require('http');
-const fs = require('fs-extra');
 const url = require('url');
-const qs = require('querystring');
 
 const socketio = require('socket.io');
 
@@ -18,6 +16,7 @@ const WriteJs = require('./config/WriteJs');
 const WriteImage = require('./config/WriteImage');
 const WriteJson = require('./config/WriteJson');
 const WriteHtml = require('./config/WriteHtml');
+const Post = require('./config/Post');
 
 const chalk = require('chalk');
 const chokidar = require('chokidar');
@@ -35,55 +34,28 @@ server.on('request', (req, res) => {
   const url_path = url_parts.pathname;
   const filename = Routes.Routes(url_path); // パス情報をRoutesへ渡しファイル名を取得する
 
-  const rmFrontPath = url_path.replace('/', ''); // パス情報の先頭の'/'を除去
-
-  /**
-   * レスポンス表示関数
-   * @param {String} contentType
-   * @param {String} fileName
-   */
-  const responseWrite = (contentType, fileName) => {
-    res.writeHead(200, { 'Content-Type': contentType });
-    res.write(fileName);
-    res.end();
-  };
-
-  if (req.method === 'POST') {
-
-    let body = '';
-    req.on('data', (chunk) => {
-      body += chunk;
-    });
-
-    req.on('end', () => {
-      const posteadHtml = qs.parse(body);
-      const postHtml = posteadHtml.save;
-      console.log(postHtml);
-      res.end();
-    });
-  }
-
+  if (req.method === 'POST') { Post.Post(req, res); }
 
   switch (filename) {
 
     case 'css':
       console.log('@css');
-      responseWrite(WriteCss.WriteCss(rmFrontPath)[0], WriteCss.WriteCss(rmFrontPath)[1]);
+      WriteCss.WriteCss(req, res);
       break;
 
     case 'js':
       console.log('@js');
-      responseWrite(WriteJs.WriteJs(rmFrontPath)[0], WriteJs.WriteJs(rmFrontPath)[1]);
+      WriteJs.WriteJs(req, res);
       break;
 
     case 'image':
       console.log('@image');
-      responseWrite(WriteImage.WriteImage(rmFrontPath)[0], WriteImage.WriteImage(rmFrontPath)[1]);
+      WriteImage.WriteImage(req, res);
       break;
 
     case 'record':
       console.log('@record');
-      responseWrite(WriteJson.WriteJson(rmFrontPath)[0], WriteJson.WriteJson(rmFrontPath)[1]);
+      WriteJson.WriteJson(req, res);
       break;
 
     case 'favicon':
@@ -98,13 +70,12 @@ server.on('request', (req, res) => {
 
     case 'post':
       console.log('@post');
-      responseWrite('text/html', content);
       res.end();
       break;
 
     default:
       // html
-      responseWrite(WriteHtml.WriteHtml(rmFrontPath, filename)[0], WriteHtml.WriteHtml(rmFrontPath, filename)[1]);
+      WriteHtml.WriteHtml(req, res);
       break;
   }
 
