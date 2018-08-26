@@ -13,7 +13,8 @@ const Config = require('./Config');
 // pugの設定情報
 const pugOptions = {
   pretty: true,
-  filename: ''
+  filename: '',
+  postHtml: ''
 };
 
 /**
@@ -31,17 +32,16 @@ const Post = (req, res) => {
   req.on('end', () => {
 
     const posteadHtml = qs.parse(body);
-    const postHtml = posteadHtml.save;
-    console.log(postHtml);
+    pugOptions.postHtml = posteadHtml.save;
 
-    renderPug = fs.readFileSync(`${Config.HTML_PATH}/result.pug`, 'utf8');
+    const renderPug = fs.readFileSync(`${Config.HTML_PATH}/result.pug`, 'utf8');
     pugOptions.filename = `${Config.HTML_PATH}/result.pug`;
-    pug.render(renderPug, pugOptions);
+    const content = pug.render(renderPug, pugOptions);
 
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(content);
     res.end();
   });
-
-  
 
 };
 

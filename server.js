@@ -70,7 +70,6 @@ server.on('request', (req, res) => {
 
     case 'post':
       console.log('@post');
-      res.end();
       break;
 
     default:
