@@ -2,12 +2,12 @@ extends _layout/_default
 
 block append vars
   -
-    title       = '記事の作成!!!!'
+    title       = '記事の作成'
 
 block content
-  main.main(role='main')
-    form(action="/result", method='post')
-      #js-edit
-    //- #js-edit-m
+  article.article
+    main.main(role='main')
+      form(action="/result", method='post')
+        #js-edit
 
 block footer
