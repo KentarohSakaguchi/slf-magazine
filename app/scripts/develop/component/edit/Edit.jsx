@@ -126,7 +126,7 @@ class Edit extends Component {
       this.addFlg = false,
       <EditSelectInput
         key={_index}
-        textId={`inputId-${_index}`}
+        textId={`inputId${_index}`}
         textValue={this.state.textValue[_index]}
         textValueChange={this.textValueChange}
         selectValueList={this.selectValueList}

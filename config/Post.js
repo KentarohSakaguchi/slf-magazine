@@ -33,6 +33,8 @@ const Post = (req, res) => {
 
     const posteadHtml = qs.parse(body);
     pugOptions.postHtml = posteadHtml.save;
+    console.log(posteadHtml);
+    console.log(posteadHtml.inputId3);
 
     const renderPug = fs.readFileSync(`${Config.HTML_PATH}/result.pug`, 'utf8');
     pugOptions.filename = `${Config.HTML_PATH}/result.pug`;

@@ -7,14 +7,22 @@ import ReactDOM from 'react-dom';
 import hljs from 'highlight.js'
 
 import Edit from '../component/edit/Edit';
+import Submit from '../component/submit/Submit';
 // import Mount from '../component/Mount';
 
 const edit = document.getElementById('js-edit');
-// console.log([edit].length);
 
 if ([edit][0] !== null) {
   ReactDOM.render(
     <Edit />, edit
+  );
+}
+
+const submit = document.getElementById('js-submit');
+
+if ([submit][0] !== null) {
+  ReactDOM.render(
+    <Submit />, submit
   );
 }
 
