@@ -43,13 +43,14 @@ class EditSelectLang extends Component {
         <label className="edit__input-title edit__input-title--lang">
           <select
             className="edit__input-select"
+            name="lang"
             value={this.props.selectLangValue}
             onChange={(e) => this.handleChange(e.target.value)}>
             {this.setOption()}
           </select>
         </label>
         <label className="edit__input-input">
-        <input className="edit__input" type="text" placeholder="関連ワードを入力" value={this.props.textLangValue} onChange={(e) => this.valueChange(e.target.value)} />
+        <input className="edit__input" type="text" name="word" placeholder="関連ワードを入力" value={this.props.textLangValue} onChange={(e) => this.valueChange(e.target.value)} />
         </label>
       </div>
     );

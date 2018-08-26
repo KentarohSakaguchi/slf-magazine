@@ -22,7 +22,7 @@ class EditSelectInput extends Component {
    * セレクトボックス
    */
   handleChange(setValue, textId) {
-    const idNumber = Number(textId.replace('inputId-', ''));
+    const idNumber = Number(textId.replace('inputId', ''));
     return this.props.selectValue(setValue, idNumber)
   }
 
@@ -39,13 +39,13 @@ class EditSelectInput extends Component {
    */
   valueChange(setValue, textId) {
     this.setState({ value: setValue});
-    const idNumber = Number(textId.replace('inputId-', ''));
+    const idNumber = Number(textId.replace('inputId', ''));
     return this.props.textValueChange(setValue, idNumber);
   }
 
   removeInput() {
     this.setState({ value: ''});
-    const idNumber = Number(this.props.textId.replace('inputId-', ''));
+    const idNumber = Number(this.props.textId.replace('inputId', ''));
     return this.props.valueRemove(idNumber);
   }
 
@@ -57,6 +57,7 @@ class EditSelectInput extends Component {
           <select
             className="edit__input-select"
             onChange={(e) => this.handleChange(e.target.value, this.props.textId)}
+            name={`select${this.props.textId}`}
           >
             {this.setOption()}
           </select>
@@ -68,6 +69,7 @@ class EditSelectInput extends Component {
             placeholder="文言を入力"
             value={this.state.value}
             onChange={(e) => this.valueChange(e.target.value, this.props.textId)}
+            name={this.props.textId}
           />
         </label>
         <button type="button" className="edit__button edit__button--minus" onClick={this.removeInput}></button>
