@@ -50,10 +50,13 @@
 
     return 'socket';
 
-  } else {
+  } else if(urlPath.indexOf('/result') >= 0) {
 
     return 'html';
 
+  } else {
+
+    return 'html';
   }
 
 };

@@ -1,2 +1,11 @@
-p post
-a(href='/') 戻り
+extends _layout/_default
+
+block append vars
+  -
+    title       = '作成した記事の確認'
+
+block content
+  article.article
+    main.main(role='main')
+
+block footer
