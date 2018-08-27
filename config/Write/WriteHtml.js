@@ -8,9 +8,9 @@ const fs = require('fs-extra');
 const pug = require('pug');
 const url = require('url');
 
-const Config = require('./Config');
-const Filelist = require('./Filelist');
-const Routes = require('./Routes');
+const Config = require('../Config');
+const Filelist = require('../Filelist');
+const Routes = require('../Routes');
 
 // pugの設定情報
 const pugOptions = {

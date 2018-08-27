@@ -11,12 +11,13 @@ const socketio = require('socket.io');
 
 const Routes = require('./config/Routes');
 
-const WriteCss = require('./config/WriteCss');
-const WriteJs = require('./config/WriteJs');
-const WriteImage = require('./config/WriteImage');
-const WriteJson = require('./config/WriteJson');
-const WriteHtml = require('./config/WriteHtml');
-const EditPost = require('./config/EditPost');
+const WriteCss = require('./config/Write/WriteCss');
+const WriteJs = require('./config/Write/WriteJs');
+const WriteImage = require('./config/Write/WriteImage');
+const WriteJson = require('./config/Write/WriteJson');
+const WriteHtml = require('./config/Write/WriteHtml');
+
+const Post = require('./config/Post/Post');
 
 const chalk = require('chalk');
 const chokidar = require('chokidar');
@@ -34,7 +35,9 @@ server.on('request', (req, res) => {
   const url_path = url_parts.pathname;
   const filename = Routes.Routes(url_path); // パス情報をRoutesへ渡しファイル名を取得する
 
-  if (req.method === 'POST' && url_path === '/result') { EditPost.Post(req, res); }
+  // reqest POST
+  if (req.method === 'POST') { Post.Post(req, res, url_path); }
+
 
   switch (filename) {
 
@@ -70,11 +73,6 @@ server.on('request', (req, res) => {
 
     case 'post':
       console.log('@post');
-
-      if (url_path === '/') {
-        res.end();
-      }
-
       break;
 
     default:

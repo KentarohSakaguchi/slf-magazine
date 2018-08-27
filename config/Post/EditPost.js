@@ -8,7 +8,7 @@ const fs = require('fs-extra');
 const qs = require('querystring');
 const pug = require('pug');
 
-const Config = require('./Config');
+const Config = require('../Config');
 
 // pugの設定情報
 const pugOptions = {
@@ -17,11 +17,13 @@ const pugOptions = {
   postHtml: ''
 };
 
+let posteadHtml;
+
 /**
  * editページでsubmitした時のPostの処理
  * @param {Object} req res
  */
-const Post = (req, res) => {
+const EditPost = (req, res) => {
 
   let body = '';
 
@@ -31,7 +33,7 @@ const Post = (req, res) => {
 
   req.on('end', () => {
 
-    const posteadHtml = qs.parse(body);
+    posteadHtml = qs.parse(body);
     pugOptions.postHtml = posteadHtml.save;
     console.log(posteadHtml);
 
@@ -42,11 +44,12 @@ const Post = (req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write(content);
     res.end();
+    return posteadHtml;
   });
 
 };
 
 module.exports = {
-  Post
+  EditPost
 };
 
