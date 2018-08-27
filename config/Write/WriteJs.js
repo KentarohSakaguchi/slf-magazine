@@ -7,8 +7,8 @@
 const fs = require('fs-extra');
 const url = require('url');
 
-const Config = require('./Config');
-const Filelist = require('./Filelist');
+const Config = require('../Config');
+const Filelist = require('../Filelist');
 
 /**
  * responce javascript
