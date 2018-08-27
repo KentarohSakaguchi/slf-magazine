@@ -35,9 +35,7 @@ class Submit extends Component {
   render() {
     return(
       <div className="edit-wrapper">
-        <div className={`edit ${this.state.activeClass}`}>
-          <div className="edit__inner">
-          </div>
+        <div className="edit result">
           <div className="edit__button-wrapper">
             <button
               type="button"
@@ -52,12 +50,12 @@ class Submit extends Component {
                 className="button button--submit">
                 OK
               </button>
-              <button
-                type="button"
+              <a
+                href="/edit"
                 className="button button--ng"
                 onClick={this.cancel}>
                 CANCEL
-              </button>
+              </a>
             </div>
           </div>
         </div>
