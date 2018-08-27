@@ -1,5 +1,5 @@
 /**
- * @file Postファイル
+ * @file EditPostファイル
  *
  * @author Chamado
  */
@@ -18,7 +18,7 @@ const pugOptions = {
 };
 
 /**
- * Postの処理
+ * editページでsubmitした時のPostの処理
  * @param {Object} req res
  */
 const Post = (req, res) => {
@@ -34,7 +34,6 @@ const Post = (req, res) => {
     const posteadHtml = qs.parse(body);
     pugOptions.postHtml = posteadHtml.save;
     console.log(posteadHtml);
-    console.log(posteadHtml.inputId3);
 
     const renderPug = fs.readFileSync(`${Config.HTML_PATH}/result.pug`, 'utf8');
     pugOptions.filename = `${Config.HTML_PATH}/result.pug`;

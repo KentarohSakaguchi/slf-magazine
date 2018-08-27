@@ -218,6 +218,7 @@ class Edit extends Component {
               <section className="blocks__text">
                 <div className="blocks__time">
                   <p>{this.setDate()}</p>
+                  <input type="hidden" name="time" value={this.setDate()} />
                 </div>
                 { this.addTextRender() }
               </section>

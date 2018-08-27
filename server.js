@@ -16,7 +16,7 @@ const WriteJs = require('./config/WriteJs');
 const WriteImage = require('./config/WriteImage');
 const WriteJson = require('./config/WriteJson');
 const WriteHtml = require('./config/WriteHtml');
-const Post = require('./config/Post');
+const EditPost = require('./config/EditPost');
 
 const chalk = require('chalk');
 const chokidar = require('chokidar');
@@ -34,7 +34,7 @@ server.on('request', (req, res) => {
   const url_path = url_parts.pathname;
   const filename = Routes.Routes(url_path); // パス情報をRoutesへ渡しファイル名を取得する
 
-  if (req.method === 'POST') { Post.Post(req, res); }
+  if (req.method === 'POST' && url_path === '/result') { EditPost.Post(req, res); }
 
   switch (filename) {
 
@@ -70,6 +70,11 @@ server.on('request', (req, res) => {
 
     case 'post':
       console.log('@post');
+
+      if (url_path === '/') {
+        res.end();
+      }
+
       break;
 
     default:
