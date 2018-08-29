@@ -24,6 +24,7 @@ const chokidar = require('chokidar');
 
 const server = http.createServer();
 
+let postJson = '';
 
 console.log(chalk.magenta(`server listen localhost:3000`));
 
@@ -36,7 +37,13 @@ server.on('request', (req, res) => {
   const filename = Routes.Routes(url_path); // パス情報をRoutesへ渡しファイル名を取得する
 
   // reqest POST
-  if (req.method === 'POST') { Post.Post(req, res, url_path); }
+  if (req.method === 'POST') {
+    postJson = Post.Post(req, res, url_path).then((result) => {
+      postJson = result;
+    });
+  }
+
+  console.log(postJson);
 
 
   switch (filename) {

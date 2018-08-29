@@ -7,17 +7,16 @@
 const EditPost = require('./EditPost');
 const ResultPost = require('./ResultPost');
 
-let postData;
-
 const Post = (req, res, url_path) => {
 
-  if (url_path === '/result') {
-    postData = EditPost.EditPost(req, res);
-  }
+  return new Promise((resolve, reject) => {
 
-  if (url_path === '/') {
-    ResultPost.ResultPost(req, res, postData);
-  }
+    if (url_path === '/result') {
+      EditPost.EditPost(req, res).then((result) => {
+        resolve(result)
+      });
+    }
+  });
 
 };
 
