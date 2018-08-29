@@ -17,8 +17,8 @@ section.blocks
             br
             | 名前には、「testMethod.html.erb」内容は下記とした
           pre.blocks__code
-            code.html
-              | < p>test< /p>
+            -var code = '<p>test</p>'
+            code.html=code
         .blocks__paragraph
           p コントローラにアクションを追加する
           pre.blocks__code
@@ -39,8 +39,8 @@ section.blocks
           .blocks__paragraph
             p 「<%= @testsan %>」変数はこの書き方で、erb内に入れる
             pre.blocks__code
-              code.html
-                | < p><%= @testsan %>< /p>
+              -var code = '<p><%= @testsan %></p>'
+              code.html=code
           .blocks__paragraph
             p 「<%= @testsan %>」変数はこの書き方で、erb内に入れる
             p コントローラーの修正
