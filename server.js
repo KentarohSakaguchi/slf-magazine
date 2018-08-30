@@ -6,6 +6,7 @@
 
 const http = require('http');
 const url = require('url');
+const fs = require('fs-extra');
 
 const socketio = require('socket.io');
 
@@ -43,7 +44,18 @@ server.on('request', (req, res) => {
     });
   }
 
-  console.log(postJson);
+
+  const url_parse = url.parse(req.url, true); // getパラメータ取得
+  if (url_parse.search === '?saved=true') {
+    // postJsonをjsonfileとして保存
+    const title = JSON.parse(postJson);
+    fs.writeFileSync(`${__dirname}/app/record/${title.time}.json`, postJson, (err) => {
+      if (err) {
+        throw err;
+      }
+    });
+    postJson = '';
+  }
 
 
   switch (filename) {
