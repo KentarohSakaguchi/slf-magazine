@@ -6,11 +6,9 @@
 
 const fs = require('fs-extra');
 const pug = require('pug');
-const url = require('url');
 
-const Config = require('../Config');
-const Filelist = require('../Filelist');
-const Routes = require('../Routes');
+const Config = require('../Config/Config');
+const Filelist = require('../Config/Filelist');
 
 // pugの設定情報
 const pugOptions = {
@@ -20,31 +18,24 @@ const pugOptions = {
 
 /**
  * responce image
- * @param {String} rmFrontPath, filename
+ * @param {Object} res
+ * @param {Object} url_parse
  * @returns {Array}
  */
-const WriteHtml = (req, res) => {
+const WriteHtml = (res, url_parse) => {
 
-  const url_parts = url.parse(req.url, true); // url情報取得
-  const url_path = url_parts.pathname;
-  const rmFrontPath = url_path.replace('/', ''); // パス情報の先頭の'/'を除去
-  const filename = Routes.Routes(url_path); // パス情報をRoutesへ渡しファイル名を取得する
+  let fileName = url_parse.pathname.replace('/', ''); // url情報取得
 
-  let renderPug = null;
-
-  if (filename === 'htmlIndex') {
-
-    console.log('@htmlIndex');
-    renderPug = fs.readFileSync(`${Config.HTML_PATH}/index.pug`, 'utf8');
-    pugOptions.filename = `${Config.HTML_PATH}/index.pug`;
-  } else {
-
-    console.log('@htmlPage');
-    const reUrlPath = rmFrontPath.replace('/', '');
-    const fileIndex = Filelist.HTML_LIST.indexOf(reUrlPath);
-    renderPug = fs.readFileSync(`${Config.HTML_PATH}/${Filelist.HTML_LIST[fileIndex]}.pug`, 'utf8');
-    pugOptions.filename = `${Config.HTML_PATH}/${Filelist.HTML_LIST[fileIndex]}.pug`;
+  if (url_parse.pathname === '/') {
+    fileName = 'index'; // url情報取得
   }
+  
+
+  console.log(Filelist.HTML_LIST);
+  
+  const fileIndex = Filelist.HTML_LIST.indexOf(fileName);
+  const renderPug = fs.readFileSync(`${Config.HTML_PATH}/${Filelist.HTML_LIST[fileIndex]}.pug`, 'utf8');
+  pugOptions.filename = `${Config.HTML_PATH}/${Filelist.HTML_LIST[fileIndex]}.pug`;
 
   const content = pug.render(renderPug, pugOptions);
 

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+/**
+ * Submitページの処理
+ */
 class Submit extends Component {
 
   constructor(props) {

@@ -8,6 +8,9 @@ import EditInput from './component/EditInput';
 import EditSelectInput from './component/EditSelectInput';
 import EditSelectLang from './component/EditSelectLang';
 
+/**
+ * Editページの処理
+ */
 class Edit extends Component {
 
   constructor(props) {

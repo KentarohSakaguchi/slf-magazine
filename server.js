@@ -10,7 +10,7 @@ const fs = require('fs-extra');
 
 const socketio = require('socket.io');
 
-const Routes = require('./config/Routes');
+const Routes = require('./config/Config/Routes');
 
 const WriteCss = require('./config/Write/WriteCss');
 const WriteJs = require('./config/Write/WriteJs');
@@ -33,8 +33,9 @@ server.on('request', (req, res) => {
 
   console.log(req.method);
 
-  const url_parts = url.parse(req.url, true); // url情報取得
-  const url_path = url_parts.pathname;
+  const url_parse = url.parse(req.url, true); // getの情報
+  console.log(url_parse);
+  const url_path = url_parse.pathname;
   const filename = Routes.Routes(url_path); // パス情報をRoutesへ渡しファイル名を取得する
 
   // reqest POST
@@ -44,8 +45,6 @@ server.on('request', (req, res) => {
     });
   }
 
-
-  const url_parse = url.parse(req.url, true); // getパラメータ取得
   if (url_parse.search === '?saved=true') {
     // postJsonをjsonfileとして保存
     const title = JSON.parse(postJson);
@@ -62,22 +61,22 @@ server.on('request', (req, res) => {
 
     case 'css':
       console.log('@css');
-      WriteCss.WriteCss(req, res);
+      WriteCss.WriteCss(res, url_parse);
       break;
 
     case 'js':
       console.log('@js');
-      WriteJs.WriteJs(req, res);
+      WriteJs.WriteJs(res, url_parse);
       break;
 
     case 'image':
       console.log('@image');
-      WriteImage.WriteImage(req, res);
+      WriteImage.WriteImage(res, url_parse);
       break;
 
     case 'record':
       console.log('@record');
-      WriteJson.WriteJson(req, res);
+      WriteJson.WriteJson(res, url_parse);
       break;
 
     case 'favicon':
@@ -96,7 +95,7 @@ server.on('request', (req, res) => {
 
     default:
       // html
-      WriteHtml.WriteHtml(req, res);
+      WriteHtml.WriteHtml(res, url_parse);
       break;
   }
 
