@@ -6,8 +6,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import hljs from 'highlight.js'
 
-import Edit from '../component/edit/Edit';
-import Submit from '../component/submit/Submit';
+import Edit from '../component/Edit/Edit';
+import Submit from '../component/Submit/Submit';
+import IndexPage from '../component/IndexPage/IndexPage';
 // import Mount from '../component/Mount';
 
 const edit = document.getElementById('js-edit');
@@ -25,6 +26,14 @@ if ([submit][0] !== null) {
     <Submit />, submit
   );
 }
+
+// const indexPage = document.getElementById('js-index-page');
+// if ([indexPage][0] !== null) {
+//   ReactDOM.render(
+//     <IndexPage />, indexPage
+//   );
+// }
+
 
 // const mm = document.getElementById('js-edit-m');
 

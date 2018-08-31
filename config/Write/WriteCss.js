@@ -5,23 +5,21 @@
  */
 
 const fs = require('fs-extra');
-const url = require('url');
 
-const Config = require('../Config');
-const Filelist = require('../Filelist');
+const Config = require('../Config/Config');
+const Filelist = require('../Config/Filelist');
 
 /**
  * responce css
- * @param {String} rmFrontPath
+ * @param {Object} res
+ * @param {Object} url_parse
  * @returns {Array}
  */
-const WriteCss = (req, res) => {
+const WriteCss = (res, url_parse) => {
 
-  const url_parts = url.parse(req.url, true); // url情報取得
-  const url_path = url_parts.pathname;
-  const rmFrontPath = url_path.replace('/', ''); // パス情報の先頭の'/'を除去
+  const fileName = url_parse.pathname.replace('/', ''); // パス情報の先頭の'/'を除去
 
-  const fileIndex = Filelist.CSS_LIST.indexOf(rmFrontPath);
+  const fileIndex = Filelist.CSS_LIST.indexOf(fileName);
   const style_css = fs.readFileSync(`${Config.APP_PATH}/${Filelist.CSS_LIST[fileIndex]}`, 'utf8');
 
   res.writeHead(200, { 'Content-Type': 'text/css' });

@@ -8,7 +8,7 @@ const fs = require('fs-extra');
 const qs = require('querystring');
 const pug = require('pug');
 
-const Config = require('../Config');
+const Config = require('../Config/Config');
 
 // pugの設定情報
 const pugOptions = {

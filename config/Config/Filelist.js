@@ -22,6 +22,8 @@ const JS_LIST = [];
 const IMG_LIST = [];
 const REC_LIST = [];
 
+HTML_LIST.push('index');
+
 for (data of html) {
   HTML_LIST.push(data.replace(`${Config.HTML_PATH}/`, '').replace('.pug', ''));
 }

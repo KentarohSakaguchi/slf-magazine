@@ -5,7 +5,6 @@
  */
 
 const EditPost = require('./EditPost');
-const ResultPost = require('./ResultPost');
 
 const Post = (req, res, url_path) => {
 

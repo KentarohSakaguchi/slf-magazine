@@ -6,8 +6,7 @@
 
 const path = require('path');
 
-const APP_PATH = path.resolve(__dirname, path.join(__dirname, '../app')); // 開発用
-
+const APP_PATH = path.resolve(__dirname, path.join(__dirname, '../app')).replace('/config', ''); // 開発用
 const HTML_PATH = path.join(APP_PATH, 'views');
 const CSS_PATH = path.join(APP_PATH, 'styles');
 const JS_PATH = path.join(APP_PATH, 'scripts');
