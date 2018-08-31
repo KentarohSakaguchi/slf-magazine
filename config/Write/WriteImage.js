@@ -17,7 +17,7 @@ const Filelist = require('../Config/Filelist');
  */
 const WriteImage = (res, url_parse) => {
 
-  const fileName = url_parse.pathname.replace('/', ''); // パス情報の先頭の'/'を除去
+  const fileName = url_parse.path.replace('/', ''); // パス情報の先頭の'/'を除去
   const fileIndex = Filelist.IMG_LIST.indexOf(fileName);
   const image_file = fs.readFileSync(`${Config.APP_PATH}/${Filelist.IMG_LIST[fileIndex]}`);
 
