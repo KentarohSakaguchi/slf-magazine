@@ -59,3 +59,14 @@ typings/
 
 # next.js build output
 .next
+
+app
+  record
+
+app
+  scripts
+    common.bundle.js
+    vendor.bundle.js
+
+app
+  images
