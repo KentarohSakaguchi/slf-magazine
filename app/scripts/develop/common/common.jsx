@@ -27,12 +27,12 @@ if ([submit][0] !== null) {
   );
 }
 
-// const indexPage = document.getElementById('js-index-page');
-// if ([indexPage][0] !== null) {
-//   ReactDOM.render(
-//     <IndexPage />, indexPage
-//   );
-// }
+const indexPage = document.getElementById('js-index-page');
+if ([indexPage][0] !== null) {
+  ReactDOM.render(
+    <IndexPage />, indexPage
+  );
+}
 
 
 // const mm = document.getElementById('js-edit-m');

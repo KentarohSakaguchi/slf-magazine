@@ -17,6 +17,7 @@ const WriteJs = require('./config/Write/WriteJs');
 const WriteImage = require('./config/Write/WriteImage');
 const WriteJson = require('./config/Write/WriteJson');
 const WriteHtml = require('./config/Write/WriteHtml');
+const Ajax = require('./config/Ajax/Ajax');
 
 const Post = require('./config/Post/Post');
 
@@ -45,6 +46,7 @@ server.on('request', (req, res) => {
     });
   }
 
+  // saveFile
   if (url_parse.search === '?saved=true') {
     // postJsonをjsonfileとして保存
     const title = JSON.parse(postJson);
@@ -54,6 +56,12 @@ server.on('request', (req, res) => {
       }
     });
     postJson = '';
+  }
+
+  // ajax
+  if (url_parse.pathname === '/record') {
+    Ajax.Ajax(res, url_parse);
+    return;
   }
 
 

@@ -17,7 +17,7 @@ const Filelist = require('../Config/Filelist');
  */
 const WriteCss = (res, url_parse) => {
 
-  const fileName = url_parse.pathname.replace('/', ''); // パス情報の先頭の'/'を除去
+  const fileName = url_parse.path.replace('/', ''); // パス情報の先頭の'/'を除去
 
   const fileIndex = Filelist.CSS_LIST.indexOf(fileName);
   const style_css = fs.readFileSync(`${Config.APP_PATH}/${Filelist.CSS_LIST[fileIndex]}`, 'utf8');
