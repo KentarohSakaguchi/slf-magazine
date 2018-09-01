@@ -29,12 +29,13 @@ const chokidar = require('chokidar');
 const server = http.createServer();
 
 let postJson = '';
+let saveFileFlg = true; // jason書き込みflg
 
 console.log(chalk.magenta(`server listen localhost:3000`));
 
 server.on('request', (req, res) => {
 
-  // console.log(req.method);
+  console.log(req.method);
 
   const url_parse = url.parse(req.url, true); // getの情報
   console.log(url_parse.path);
@@ -48,26 +49,32 @@ server.on('request', (req, res) => {
     });
   }
 
-  
-  // saveFile
-  if (url_parse.search === '?saved=true') {
+  if (url_parse.pathname === '/edit') {
+    saveFileFlg = true; // editページのみflgをtrueに
+  }
 
-    const jsonlist = glob.sync(`${Config.REC_PATH}/report/*.json`); // 保存されているjsonの数を調べる
+  
+  let jsonlist = glob.sync(`${Config.REC_PATH}/report/*.json`).length; // 保存されているjsonの数を調べる → jasonfileの名前とする
+
+  // saveFile
+  if (url_parse.search === '?saved=true' && saveFileFlg) {
+
+    saveFileFlg = false;
+    jsonlist++;
 
     // postJsonをjsonfileとして保存
-    const jsondata = JSON.parse(postJson || 'null');
-    fs.writeFileSync(`${__dirname}/app/record/report/id-${jsonlist.length + 1}.json`, jsondata, (err) => {
+    fs.writeFileSync(`${__dirname}/app/record/report/id-${jsonlist}.json`, postJson, (err) => {
       if (err) {
         throw err;
       }
     });
-    console.log('-----------------------------------------------');
+    console.log('-----------------saved------------------------------');
     postJson = '';
   }
 
   // ajax
   if (url_parse.pathname === '/record') {
-    Ajax.Ajax(res, url_parse);
+    Ajax.Ajax(res, url_parse, jsonlist);
     return;
   }
 
