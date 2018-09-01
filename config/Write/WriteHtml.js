@@ -24,9 +24,9 @@ const pugOptions = {
  */
 const WriteHtml = (res, url_parse) => {
 
-  let fileName = url_parse.path.replace('/', ''); // url情報取得
+  let fileName = url_parse.pathname.replace('/', ''); // url情報取得
 
-  if (url_parse.path === '/') {
+  if (url_parse.pathname === '/') {
     fileName = 'index'; // url情報取得
   }
   
