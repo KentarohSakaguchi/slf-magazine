@@ -7,7 +7,7 @@ block append vars
 block content
   article.article
     main.main(role='main')!=postHtml
-      form(action='/', method='get')
+      form(action='/admin', method='get')
         input(type='hidden', name='saved', value='true')
         #js-submit
 

@@ -6,13 +6,13 @@ block append vars
     description = '';
 
 block content
-  include include/_header.pug
+  include _include/_header.pug
   article.article
     main.main(role='main')
-      include pages/_top.pug
-      include pages/_block.pug
-      include pages/_block_3.pug
-      include pages/_block_2.pug
-      include include/_ad.pug
+      include _pages/_top.pug
+      include _pages/_block.pug
+      include _pages/_block_3.pug
+      include _pages/_block_2.pug
+      include _include/_ad.pug
 
 block footer
