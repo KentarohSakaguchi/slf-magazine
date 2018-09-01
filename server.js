@@ -7,9 +7,11 @@
 const http = require('http');
 const url = require('url');
 const fs = require('fs-extra');
+const glob = require('glob');
 
 const socketio = require('socket.io');
 
+const Config = require('./config/Config/Config');
 const Routes = require('./config/Config/Routes');
 
 const WriteCss = require('./config/Write/WriteCss');
@@ -32,10 +34,10 @@ console.log(chalk.magenta(`server listen localhost:3000`));
 
 server.on('request', (req, res) => {
 
-  console.log(req.method);
+  // console.log(req.method);
 
   const url_parse = url.parse(req.url, true); // getの情報
-  console.log(url_parse);
+  console.log(url_parse.path);
   const url_path = url_parse.pathname;
   const filename = Routes.Routes(url_path); // パス情報をRoutesへ渡しファイル名を取得する
 
@@ -46,15 +48,20 @@ server.on('request', (req, res) => {
     });
   }
 
+  
   // saveFile
   if (url_parse.search === '?saved=true') {
+
+    const jsonlist = glob.sync(`${Config.REC_PATH}/report/*.json`); // 保存されているjsonの数を調べる
+
     // postJsonをjsonfileとして保存
-    const title = JSON.parse(postJson);
-    fs.writeFileSync(`${__dirname}/app/record/${title.time}.json`, postJson, (err) => {
+    const jsondata = JSON.parse(postJson || 'null');
+    fs.writeFileSync(`${__dirname}/app/record/report/id-${jsonlist.length + 1}.json`, jsondata, (err) => {
       if (err) {
         throw err;
       }
     });
+    console.log('-----------------------------------------------');
     postJson = '';
   }
 
