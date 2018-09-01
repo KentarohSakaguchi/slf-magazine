@@ -12,8 +12,6 @@
 
  const Routes = (urlPath) => {
 
-  console.log('url::' + urlPath);
-
   if (urlPath.indexOf('.pug') >= 0) {
 
     return 'html';

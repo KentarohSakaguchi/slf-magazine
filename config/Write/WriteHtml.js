@@ -29,10 +29,7 @@ const WriteHtml = (res, url_parse) => {
   if (url_parse.pathname === '/') {
     fileName = 'index'; // url情報取得
   }
-  
 
-  console.log(Filelist.HTML_LIST);
-  
   const fileIndex = Filelist.HTML_LIST.indexOf(fileName);
   const renderPug = fs.readFileSync(`${Config.HTML_PATH}/${Filelist.HTML_LIST[fileIndex]}.pug`, 'utf8');
   pugOptions.filename = `${Config.HTML_PATH}/${Filelist.HTML_LIST[fileIndex]}.pug`;
