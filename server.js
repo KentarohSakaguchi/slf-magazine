@@ -39,7 +39,7 @@ server.on('request', (req, res) => {
   console.log(req.method);
 
   const url_parse = url.parse(req.url, true); // getの情報
-  console.log(url_parse);
+  // console.log(url_parse);
   Data.Data(url_parse);
   const url_path = url_parse.pathname;
   const filename = Routes.Routes(url_path); // パス情報をRoutesへ渡しファイル名を取得する

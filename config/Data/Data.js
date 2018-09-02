@@ -42,7 +42,7 @@ const Data = (url_parse) => {
     dataList.lang = dataList.json.lang;
     dataList.title = dataList.json.title;
     dataList.time = dataList.json.time;
-    console.log(dataList);
+    // console.log(dataList);
   });
 };
 
