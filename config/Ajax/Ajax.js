@@ -16,11 +16,11 @@ const qs = require('querystring');
  */
 const Ajax = (res, url_parse, jsonlist) => {
 
-  const jsonData = fs.readFileSync(`${__dirname.replace('config/Ajax', '')}/app/record/${url_parse.query[0]}.json`); // jsonを読む
+  const jsonData = fs.readFileSync(`${__dirname.replace('config/Ajax', '')}app/record/report/${url_parse.query[0]}.json`); // jsonを読む
 
   // apiとして返却するlist
   let resultData = {
-    length: jsonlist, // 記事jsonのlengthを返す
+    index: jsonlist, // 記事jsonのlengthを返す
     json: {}
   };
 
