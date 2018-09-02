@@ -1,14 +1,13 @@
 /**
- * @file Ajax 設定ファイル
+ * @file Ajax APIとして返却する
  *
  * @author Chamado
  */
 
 const fs = require('fs-extra');
-const qs = require('querystring');
 
 /**
- * responce css
+ * return ajax
  * @param {Object} res
  * @param {Object} url_parse
  * @param {Number} jsonlist jsonfileのlength
@@ -21,14 +20,19 @@ const Ajax = (res, url_parse, jsonlist) => {
   // apiとして返却するlist
   let resultData = {
     index: jsonlist, // 記事jsonのlengthを返す
-    json: {}
+    json: {},
+    lang: '',
+    title: '',
+    time: ''
   };
 
   // 読み込んだjasonを一旦jsオブジェクトにparse
   let readJasonCunk = '';
   readJasonCunk += jsonData;
   resultData.json = JSON.parse(readJasonCunk);
-
+  resultData.lang = resultData.json.lang;
+  resultData.title = resultData.json.title;
+  resultData.time = resultData.json.time;
   // resultDataをjsonにパースしてapiを返却する
   const resultJson = JSON.stringify(resultData);
 
