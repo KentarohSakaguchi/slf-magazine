@@ -20,6 +20,7 @@ const WriteImage = require('./config/Write/WriteImage');
 const WriteJson = require('./config/Write/WriteJson');
 const WriteHtml = require('./config/Write/WriteHtml');
 const Ajax = require('./config/Ajax/Ajax');
+const Data = require('./config/Data/Data');
 
 const Post = require('./config/Post/Post');
 
@@ -38,7 +39,8 @@ server.on('request', (req, res) => {
   console.log(req.method);
 
   const url_parse = url.parse(req.url, true); // getの情報
-  console.log(url_parse.pathname);
+  console.log(url_parse);
+  Data.Data(url_parse);
   const url_path = url_parse.pathname;
   const filename = Routes.Routes(url_path); // パス情報をRoutesへ渡しファイル名を取得する
 
@@ -77,6 +79,13 @@ server.on('request', (req, res) => {
     console.log('-------------Ajax------------------------');
     Ajax.Ajax(res, url_parse, jsonlist);
     return;
+  }
+
+  // reportpage
+  if (url_parse.search === '?report=list') {
+    console.log('-------------OS------------------------');
+
+    console.log('-------------OS------------------------');
   }
 
 

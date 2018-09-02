@@ -14,7 +14,9 @@ const Filelist = require('../Config/Filelist');
 // pugの設定情報
 const pugOptions = {
   pretty: true,
-  filename: ''
+  locals: {
+    file: ''
+  }
 };
 
 /**
@@ -40,6 +42,7 @@ const WriteHtml = (res, url_parse) => {
     for (data of viewList) {
       const view = data.replace(Config.HTML_PATH, '').replace('.pug', '');
       if (fileName !== view) {
+        pugOptions.locals.file = fileName;
         fileName = 'record';
       }
     }
