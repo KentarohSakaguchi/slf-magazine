@@ -18,8 +18,7 @@ const Filelist = require('../Config/Filelist');
  */
 const WriteJson = (res, url_parse) => {
 
-  const fileName = url_parse.pathname.replace('/', '');
-
+  const fileName = url_parse.pathname.replace(/.*?\/record/, 'record');
   const fileIndex = Filelist.REC_LIST.indexOf(fileName);
   const rec_file = fs.readFileSync(`${Config.APP_PATH}/${Filelist.REC_LIST[fileIndex]}`);
 
