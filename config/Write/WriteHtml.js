@@ -6,6 +6,7 @@
 
 const fs = require('fs-extra');
 const pug = require('pug');
+const glob = require('glob');
 
 const Config = require('../Config/Config');
 const Filelist = require('../Config/Filelist');
@@ -24,10 +25,24 @@ const pugOptions = {
  */
 const WriteHtml = (res, url_parse) => {
 
-  let fileName = url_parse.pathname.replace('/', ''); // url情報取得
+  let fileName = url_parse.pathname.replace('/', '').replace(/.*?\//, ''); // url情報取得
 
   if (url_parse.pathname === '/') {
+    // index ページ
     fileName = 'index'; // url情報取得
+
+  } else {
+
+    // その他ページ
+    const viewList = glob.sync(`${Config.HTML_PATH}/!(_)*`);
+
+    // 404のち
+    for (data of viewList) {
+      const view = data.replace(Config.HTML_PATH, '').replace('.pug', '');
+      if (fileName !== view) {
+        fileName = 'record';
+      }
+    }
   }
 
   const fileIndex = Filelist.HTML_LIST.indexOf(fileName);

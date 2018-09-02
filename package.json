@@ -13,6 +13,7 @@
     "styles:watch": "cross-env NODE_ENV=development ./node_modules/.bin/postcss --config ./node_script_files/postcss.config.js app/styles/develop/index.scss -o app/styles/style.css -w",
     "stylelint:watch": "cross-env NODE_ENV=development NODE_MODE=watching node ./node_script_files/stylelint.js",
     "start": "npm run stylelint:watch & npm run js:watch & npm run styles:watch & npm run server",
+    "dev": "npm run stylelint:watch & npm run js:watch & npm run styles:watch & npm run devserver",
     "prod": "nodemon server.js"
   },
   "repository": {
