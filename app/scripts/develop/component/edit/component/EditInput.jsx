@@ -17,7 +17,6 @@ class EditInput extends Component {
   valueChange(setValue) {
     return this.props.headerValueChange(setValue);
   }
-  
 
   render() {
     return(

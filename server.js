@@ -38,7 +38,7 @@ server.on('request', (req, res) => {
   console.log(req.method);
 
   const url_parse = url.parse(req.url, true); // getの情報
-  console.log(url_parse.path);
+  console.log(url_parse);
   const url_path = url_parse.pathname;
   const filename = Routes.Routes(url_path); // パス情報をRoutesへ渡しファイル名を取得する
 
@@ -54,7 +54,7 @@ server.on('request', (req, res) => {
   }
 
   
-  let jsonlist = glob.sync(`${Config.REC_PATH}/report/*.json`).length; // 保存されているjsonの数を調べる → jasonfileの名前とする
+  let jsonlist = glob.sync(`${Config.REC_PATH}/report/*.json`).length; // 保存されているjsonの数を調べる → 記事のjasonfileの名前とする(id-${jsonlist}.json)
 
   // saveFile
   if (url_parse.search === '?saved=true' && saveFileFlg) {
@@ -68,12 +68,13 @@ server.on('request', (req, res) => {
         throw err;
       }
     });
-    console.log('-----------------saved------------------------------');
+    console.log('-----------------saved--------------------');
     postJson = '';
   }
 
   // ajax
-  if (url_parse.pathname === '/record') {
+  if (url_parse.pathname === '/record/report') {
+    console.log('-------------Ajax------------------------');
     Ajax.Ajax(res, url_parse, jsonlist);
     return;
   }
