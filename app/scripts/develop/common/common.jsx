@@ -9,7 +9,6 @@ import hljs from 'highlight.js'
 import Edit from '../component/Edit/Edit';
 import Submit from '../component/Submit/Submit';
 import IndexPage from '../component/IndexPage/IndexPage';
-import Header from '../component/Header/Header';
 // import Mount from '../component/Mount';
 
 const edit = document.getElementById('js-edit');
