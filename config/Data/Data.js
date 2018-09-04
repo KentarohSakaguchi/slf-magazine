@@ -30,6 +30,8 @@ const Data = (res, url_parse) => {
     length: 0
   };
 
+  const resultArray = [];
+
   res.writeHead(200, { 'Content-Type': 'application/json' });
 
   // 記事で使用されている言語の洗い出し
@@ -47,13 +49,13 @@ const Data = (res, url_parse) => {
 
     if (dataList.lang === setPath) {
       dataList.length++;
-      const resultJson = JSON.stringify(dataList);
-
-      res.write(resultJson);
+      resultArray.push(dataList);
     }
 
   });
 
+  const resultJson = JSON.stringify(resultArray);
+  res.write(resultJson);
   res.end();
 
 };
