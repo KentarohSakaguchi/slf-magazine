@@ -19,7 +19,7 @@ const Filelist = require('../Config/Filelist');
 const Data = (res, url_parse) => {
 
   const jsonList = glob.sync(`${Config.REC_PATH}/report/*`);
-  const setPath = url_parse.pathname.replace(/\//g, '');
+  const setPath = url_parse.query[0].replace('report=', '');
 
   // apiとして返却するlist
   let dataList = {
@@ -29,6 +29,8 @@ const Data = (res, url_parse) => {
     time: '',
     length: 0
   };
+
+  res.writeHead(200, { 'Content-Type': 'application/json' });
 
   // 記事で使用されている言語の洗い出し
   jsonList.forEach((value) => {
@@ -47,7 +49,6 @@ const Data = (res, url_parse) => {
       dataList.length++;
       const resultJson = JSON.stringify(dataList);
 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
       res.write(resultJson);
     }
 

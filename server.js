@@ -82,10 +82,10 @@ server.on('request', (req, res) => {
   }
 
   // reportpage
-  if (url_parse.search === '?report=list') {
-    console.log('-------------OS------------------------');
+  if (url_parse.pathname === '/record/list') {
+    console.log('-------------Data------------------------');
     Data.Data(res, url_parse);
-    console.log('-------------OS------------------------');
+    return;
   }
 
 
