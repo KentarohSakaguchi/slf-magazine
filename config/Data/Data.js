@@ -16,21 +16,21 @@ const Filelist = require('../Config/Filelist');
  * @param {Number} jsonlist jsonfileのlength
  * @returns {Array}
  */
-const Data = (url_parse) => {
+const Data = (res, url_parse) => {
 
-  console.log('-------------data-------------');
-  const jsonList = glob.sync(`${Config.REC_PATH}/report/*`);  
+  const jsonList = glob.sync(`${Config.REC_PATH}/report/*`);
+  const setPath = url_parse.pathname.replace(/\//g, '');
 
   // apiとして返却するlist
   let dataList = {
-    json: {},
+    json: '',
     lang: '',
     title: '',
-    time: ''
+    time: '',
+    length: 0
   };
 
-  const langSort = [];
-
+  // 記事で使用されている言語の洗い出し
   jsonList.forEach((value) => {
 
     const jsonData = fs.readFileSync(value);
@@ -42,8 +42,19 @@ const Data = (url_parse) => {
     dataList.lang = dataList.json.lang;
     dataList.title = dataList.json.title;
     dataList.time = dataList.json.time;
-    // console.log(dataList);
+
+    if (dataList.lang === setPath) {
+      dataList.length++;
+      const resultJson = JSON.stringify(dataList);
+
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.write(resultJson);
+    }
+
   });
+
+  res.end();
+
 };
 
 module.exports = {

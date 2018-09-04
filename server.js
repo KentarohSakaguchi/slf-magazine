@@ -40,7 +40,7 @@ server.on('request', (req, res) => {
 
   const url_parse = url.parse(req.url, true); // getの情報
   // console.log(url_parse);
-  Data.Data(url_parse);
+
   const url_path = url_parse.pathname;
   const filename = Routes.Routes(url_path); // パス情報をRoutesへ渡しファイル名を取得する
 
@@ -84,7 +84,7 @@ server.on('request', (req, res) => {
   // reportpage
   if (url_parse.search === '?report=list') {
     console.log('-------------OS------------------------');
-
+    Data.Data(res, url_parse);
     console.log('-------------OS------------------------');
   }
 

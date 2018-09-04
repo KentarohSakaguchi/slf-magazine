@@ -20,7 +20,7 @@ const Ajax = (res, url_parse, jsonlist) => {
   // apiとして返却するlist
   let resultData = {
     index: jsonlist, // 記事jsonのlengthを返す
-    json: {},
+    json: '',
     lang: '',
     title: '',
     time: ''
@@ -33,6 +33,7 @@ const Ajax = (res, url_parse, jsonlist) => {
   resultData.lang = resultData.json.lang;
   resultData.title = resultData.json.title;
   resultData.time = resultData.json.time;
+
   // resultDataをjsonにパースしてapiを返却する
   const resultJson = JSON.stringify(resultData);
 
