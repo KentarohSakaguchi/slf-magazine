@@ -9,6 +9,7 @@ import hljs from 'highlight.js'
 import Edit from '../component/Edit/Edit';
 import Submit from '../component/Submit/Submit';
 import IndexPage from '../component/IndexPage/IndexPage';
+import RecordPage from '../component/RecordPage/RecordPage';
 // import Mount from '../component/Mount';
 
 const edit = document.getElementById('js-edit');
@@ -33,6 +34,14 @@ if ([indexPage][0] !== null) {
     <IndexPage />, indexPage
   );
 }
+
+const recordPage = document.getElementById('js-record-page');
+if ([recordPage][0] !== null) {
+  ReactDOM.render(
+    <RecordPage />, recordPage
+  );
+}
+
 
 
 // const mm = document.getElementById('js-edit-m');
