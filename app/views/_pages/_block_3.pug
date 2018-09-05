@@ -1,0 +1,60 @@
+section.blocks
+  .blocks__box
+    .blocks__inner
+      header.blocks__header
+        h2.blocks__title ruby on rails5でviewを作りました。
+        include ../_mixin/_label
+        +Label('ruby', 'ruby on rails5')
+      section.blocks__text
+        .blocks__time
+          p 2017.10.25
+        .blocks__text-title
+          h3.blocks__title テンプレートファイルの作成
+        .blocks__paragraph
+          p 「view」フォルダの中にコントローラー名のフォルダを作りその中に.erbファイルを作っていく
+            br
+            | 今回は、以前作ったtestコントローラーのtestMethodアクション用のテンプレートを作成
+            br
+            | 名前には、「testMethod.html.erb」内容は下記とした
+          pre.blocks__code
+            -var code = '<p>test</p>'
+            code.html=code
+        .blocks__paragraph
+          p コントローラにアクションを追加する
+          pre.blocks__code
+            code.ruby
+              | class TestController < ApplicationController
+              |  def testMethod
+              |  end
+              | end
+          p コントローラー内でrenderなどを使用していなければコントローラーの中身は「def testMethod〜end」のみでOK
+        .blocks__paragraph
+          p ページを表示する、下記は、以前ルーティングで指定したurl
+          .blocks__code-preview
+            code.blocks__code-preview-text
+              p http://localhost:3000/testtest
+          p ブラウザにtestと表示されれば成功
+        .blocks__paragraph
+          h3.blocks__title erbで変数を使う
+          .blocks__paragraph
+            p 「<%= @testsan %>」変数はこの書き方で、erb内に入れる
+            pre.blocks__code
+              -var code = '<p><%= @testsan %></p>'
+              code.html=code
+          .blocks__paragraph
+            p 「<%= @testsan %>」変数はこの書き方で、erb内に入れる
+            p コントローラーの修正
+            pre.blocks__code
+              code.ruby
+                | class TestController < ApplicationController
+                |  def testMethod
+                |   @testsan = 'テストだよ'
+                |  end
+                | end
+            p ブラウザにテストだよと表示されれば成功
+
+
+
+
+
+

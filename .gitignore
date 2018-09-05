@@ -60,11 +60,9 @@ typings/
 # next.js build output
 .next
 
-app
-  record
+app/record
 
 app/scripts/common.bundle.js
 app/scripts/vendor.bundle.js
 
-app
-  images
+app/images
