@@ -63,10 +63,8 @@ typings/
 app
   record
 
-app
-  scripts
-    common.bundle.js
-    vendor.bundle.js
+app/scripts/common.bundle.js
+app/scripts/vendor.bundle.js
 
 app
   images
