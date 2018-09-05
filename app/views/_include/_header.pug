@@ -1,0 +1,30 @@
+header.header
+  .header__title
+    h1.header__title-text slf-magazine / 
+      span.header__title-sub web開発技術向上のための個人メモ
+  nav.header__nav
+    h2.header__logo
+      a(href='/').header__logo-link
+        img(src='images/logo.svg', alt='slf-magazine').header__logo-img
+    .header__menu-wrap
+      ul.header__menu
+        if !admin
+          li.header__list
+            a(href="/javascript").header__list-link.js-header-trigger javascript
+          li.header__list
+            a(href="/css").header__list-link.js-header-trigger css
+          li.header__list
+            a(href="/html").header__list-link.js-header-trigger html
+          li.header__list
+            a(href="/ruby").header__list-link.js-header-trigger ruby
+          li.header__list
+            a(href="/python").header__list-link.js-header-trigger python
+          li.header__list
+            a(href="/go").header__list-link.js-header-trigger go
+          li.header__list
+            a(href="/php").header__list-link.js-header-trigger php
+        else
+          li.header__list
+            a(href="/edit").header__list-link.js-admin-header-trigger edit
+          li.header__list
+            a(href="/").header__list-link.js-admin-header-trigger top

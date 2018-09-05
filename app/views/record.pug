@@ -1,0 +1,17 @@
+extends _layout/_default
+
+block append vars
+  -
+    title       = `slf-magazine/${saverText}の記事`
+    description = '';
+
+block content
+  include _include/_header.pug
+  article.article
+    main.main(role='main')
+      .pages#js-record-page
+      //- include _pages/_block.pug
+      //- include _pages/_block_3.pug
+      //- include _pages/_block_2.pug
+      //- include _include/_ad.pug
+block footer
