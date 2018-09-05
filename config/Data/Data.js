@@ -31,6 +31,7 @@ const Data = (res, url_parse) => {
   };
 
   const resultArray = [];
+  let b = '';
 
   res.writeHead(200, { 'Content-Type': 'application/json' });
 
@@ -48,8 +49,15 @@ const Data = (res, url_parse) => {
     dataList.time = dataList.json.time;
 
     if (dataList.lang === setPath) {
-      dataList.length++;
-      resultArray.push(dataList);
+
+      const wraiteData = {
+        json: dataList.json,
+        lang: dataList.lang,
+        title: dataList.json.title,
+        time: dataList.json.time,
+        length: dataList.length++
+      }
+      resultArray.push(wraiteData);
     }
 
   });

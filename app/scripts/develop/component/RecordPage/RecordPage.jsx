@@ -30,7 +30,6 @@ class RecordPage extends Component {
   }
 
   renderHtml() {
-    console.log(this.state.data)
     return this.state.data.map((value) => {
       return value.json.save;
     })
@@ -38,7 +37,6 @@ class RecordPage extends Component {
   
 
   render() {
-    console.log(this.state.data);
     return <div className="report" dangerouslySetInnerHTML={{__html: this.renderHtml()}}></div>
   }
 }

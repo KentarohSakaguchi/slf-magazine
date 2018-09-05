@@ -67,15 +67,17 @@ class IndexPage extends Component {
   }
 
   renderHtml() {
-    return this.state.data.map((value) => {
+    const renderFile = this.state.data.map((value) => {
       return value.save;
-    })
+    });
+
+    return renderFile.join('');
   }
   
 
   render() {
     console.log(this.state.data);
-    return <div className="report" dangerouslySetInnerHTML={{__html: this.renderHtml()}}></div>
+    return <div className="report" dangerouslySetInnerHTML={{__html: this.renderHtml()}}></div>;
   }
 }
 
