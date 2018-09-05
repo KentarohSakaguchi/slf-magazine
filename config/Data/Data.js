@@ -31,7 +31,6 @@ const Data = (res, url_parse) => {
   };
 
   const resultArray = [];
-  let b = '';
 
   res.writeHead(200, { 'Content-Type': 'application/json' });
 
