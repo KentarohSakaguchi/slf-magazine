@@ -8,15 +8,14 @@ const fs = require('fs-extra');
 const glob = require('glob');
 
 const Config = require('../Config/Config');
-const Filelist = require('../Config/Filelist');
 
 /**
  * @param {Object} res
  * @param {Object} url_parse
- * @param {Number} jsonlist jsonfileのlength
+ * @param {String} pagenameをみて処理を分ける
  * @returns {Array}
  */
-const Data = (res, url_parse) => {
+const Data = (res, url_parse, pagename) => {
 
   const jsonList = glob.sync(`${Config.REC_PATH}/report/*`);
   const setPath = url_parse.query[0].replace('report=', '');
@@ -27,7 +26,8 @@ const Data = (res, url_parse) => {
     lang: '',
     title: '',
     time: '',
-    length: 0
+    id: 0,
+    length: jsonList.length
   };
 
   const resultArray = [];
@@ -47,16 +47,32 @@ const Data = (res, url_parse) => {
     dataList.title = dataList.json.title;
     dataList.time = dataList.json.time;
 
-    if (dataList.lang === setPath) {
+    if (dataList.lang === setPath && pagename !== 'index') {
 
       const wraiteData = {
         json: dataList.json,
         lang: dataList.lang,
         title: dataList.json.title,
         time: dataList.json.time,
-        length: dataList.length++
+        id: dataList.id++,
+        length: jsonList.length
       }
+
       resultArray.push(wraiteData);
+
+    } else if (pagename === 'index') {
+
+      // 全件取得
+      const wraiteDataIndex = {
+        json: dataList.json,
+        lang: dataList.lang,
+        title: dataList.json.title,
+        time: dataList.json.time,
+        id: dataList.id++,
+        length: jsonList.length
+      }
+
+      resultArray.push(wraiteDataIndex);
     }
 
   });
