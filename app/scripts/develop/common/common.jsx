@@ -10,6 +10,7 @@ import Edit from '../component/Edit/Edit';
 import Submit from '../component/Submit/Submit';
 import IndexPage from '../component/IndexPage/IndexPage';
 import RecordPage from '../component/RecordPage/RecordPage';
+import AdminPage from '../component/AdminPage/AdminPage';
 // import Mount from '../component/Mount';
 
 const edit = document.getElementById('js-edit');
@@ -39,6 +40,13 @@ const recordPage = document.getElementById('js-record-page');
 if ([recordPage][0] !== null) {
   ReactDOM.render(
     <RecordPage />, recordPage
+  );
+}
+
+const adminPage = document.getElementById('js-admin-page');
+if ([adminPage][0] !== null) {
+  ReactDOM.render(
+    <AdminPage />, adminPage
   );
 }
 

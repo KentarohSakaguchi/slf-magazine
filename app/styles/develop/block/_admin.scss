@@ -1,0 +1,14 @@
+.admin {
+  .blocks__header {
+    border-bottom: none;
+    align-items: flex-start;
+  }
+
+  &__label-wrap {
+    margin-left: 1.6rem;
+  }
+
+  &__button-wrap {
+    position: relative;
+  }
+}

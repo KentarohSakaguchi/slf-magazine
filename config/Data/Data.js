@@ -44,6 +44,7 @@ const Data = (res, url_parse, pagename) => {
     readJasonCunk += jsonData;
     dataList.json = JSON.parse(readJasonCunk);
     dataList.lang = dataList.json.lang;
+    dataList.word = dataList.json.word;
     dataList.title = dataList.json.title;
     dataList.time = dataList.json.time;
 
@@ -52,6 +53,7 @@ const Data = (res, url_parse, pagename) => {
       const wraiteData = {
         json: dataList.json,
         lang: dataList.lang,
+        word: dataList.word,
         title: dataList.json.title,
         time: dataList.json.time,
         id: dataList.id++,
@@ -66,6 +68,7 @@ const Data = (res, url_parse, pagename) => {
       const wraiteDataIndex = {
         json: dataList.json,
         lang: dataList.lang,
+        word: dataList.word,
         title: dataList.json.title,
         time: dataList.json.time,
         id: dataList.id++,
