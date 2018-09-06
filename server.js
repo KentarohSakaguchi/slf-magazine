@@ -76,15 +76,15 @@ server.on('request', (req, res) => {
 
   // ajax
   if (url_parse.pathname === '/record/report') {
-    console.log('-------------Ajax------------------------');
-    Ajax.Ajax(res, url_parse, jsonlist);
+    console.log('-------------index------------------------');
+    Data.Data(res, url_parse, 'index');
     return;
   }
 
   // reportpage
   if (url_parse.pathname === '/record/list') {
     console.log('-------------Data------------------------');
-    Data.Data(res, url_parse);
+    Data.Data(res, url_parse, 'page');
     return;
   }
 
