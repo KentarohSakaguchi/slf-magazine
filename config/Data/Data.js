@@ -63,7 +63,9 @@ const Data = (res, url_parse, pagename) => {
         delete: dataList.delete
       }
 
-      resultArray.push(wraiteData);
+      if (wraiteData.delete === 'false' || wraiteData.delete === false) {
+        resultArray.push(wraiteData);
+      }
 
     } else if (pagename === 'index') {
 
@@ -79,7 +81,25 @@ const Data = (res, url_parse, pagename) => {
         delete: dataList.delete
       }
 
-      resultArray.push(wraiteDataIndex);
+      if (wraiteDataIndex.delete === 'false' || wraiteDataIndex.delete === false) {
+        resultArray.push(wraiteDataIndex);
+      }
+
+    } else if (pagename === 'admin') {
+
+      // 全件取得
+      const wraiteDataAdmin = {
+        json: dataList.json,
+        lang: dataList.lang,
+        word: dataList.word,
+        title: dataList.json.title,
+        time: dataList.json.time,
+        id: dataList.id++,
+        length: jsonList.length,
+        delete: dataList.delete
+      }
+
+      resultArray.push(wraiteDataAdmin);
     }
 
   });

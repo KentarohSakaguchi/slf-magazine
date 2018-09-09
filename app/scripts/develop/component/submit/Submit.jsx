@@ -54,7 +54,7 @@ class Submit extends Component {
                 OK
               </button>
               <a
-                href="/edit"
+                href="/edit?back=cancel"
                 className="button button--ng"
                 onClick={this.cancel}>
                 CANCEL

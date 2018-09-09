@@ -21,7 +21,7 @@ class RecordPage extends Component {
     SetAjax(`report=${setPram}`);
 
     GetAjax().then((result) => { 
-      console.log(result.data);
+      console.log(result);
       this.setState({
         data: result.data
       });

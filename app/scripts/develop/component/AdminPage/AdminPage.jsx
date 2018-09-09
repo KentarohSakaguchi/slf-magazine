@@ -44,7 +44,7 @@ class AdminPage extends Component {
     const deleteId = Number(event.currentTarget.getAttribute('data-id').replace('id-', ''));
     const arrData = this.state.data;
     console.log(arrData);
-    arrData[deleteId - 1].delete = 'save';
+    arrData[deleteId - 1].delete = 'save'; // flgにsaveを付与でサーバー側で削除処理をしてくれる
     this.setState({
       data: arrData,
     });
