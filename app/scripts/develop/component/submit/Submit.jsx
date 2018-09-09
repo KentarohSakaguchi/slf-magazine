@@ -20,7 +20,7 @@ class Submit extends Component {
   }
 
   /**
-   * 記録ボタン(hidenにvalueをset)
+   * 記録ボタン
    */
   onRec() {
 

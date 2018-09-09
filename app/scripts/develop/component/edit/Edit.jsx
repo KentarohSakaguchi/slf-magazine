@@ -209,6 +209,7 @@ class Edit extends Component {
     console.log(this.textArray);
     return(
       <div className="edit-wrapper">
+        <input type="hidden" name="delete" value="false" />
         <input type="hidden" name="save" id="js-saveHtml"/>
         <section className="blocks">
           <div className="blocks__box">

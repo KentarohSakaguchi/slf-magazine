@@ -27,7 +27,8 @@ const Data = (res, url_parse, pagename) => {
     title: '',
     time: '',
     id: 0,
-    length: jsonList.length
+    length: jsonList.length,
+    delete: ''
   };
 
   const resultArray = [];
@@ -47,6 +48,7 @@ const Data = (res, url_parse, pagename) => {
     dataList.word = dataList.json.word;
     dataList.title = dataList.json.title;
     dataList.time = dataList.json.time;
+    dataList.delete = dataList.json.delete;
 
     if (dataList.lang === setPath && pagename !== 'index') {
 
@@ -57,7 +59,8 @@ const Data = (res, url_parse, pagename) => {
         title: dataList.json.title,
         time: dataList.json.time,
         id: dataList.id++,
-        length: jsonList.length
+        length: jsonList.length,
+        delete: dataList.delete
       }
 
       resultArray.push(wraiteData);
@@ -72,7 +75,8 @@ const Data = (res, url_parse, pagename) => {
         title: dataList.json.title,
         time: dataList.json.time,
         id: dataList.id++,
-        length: jsonList.length
+        length: jsonList.length,
+        delete: dataList.delete
       }
 
       resultArray.push(wraiteDataIndex);
