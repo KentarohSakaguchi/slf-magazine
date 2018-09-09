@@ -20,6 +20,7 @@ const WriteHtml = require('./config/Write/WriteHtml');
 const Data = require('./config/Data/Data');
 const Save = require('./config/Save/Save');
 const Post = require('./config/Post/Post');
+const Delete = require('./config/Delete/Delete');
 
 const chalk = require('chalk');
 const chokidar = require('chokidar');
@@ -45,12 +46,24 @@ server.on('request', (req, res) => {
   if (req.method === 'POST') {
     postJson = Post.Post(req, res, url_path).then((result) => {
       postJson = result;
+      console.log('=@@@@@@');
+      console.log(result);
     });
   }
 
   // edit page
   if (url_parse.pathname === '/edit') {
+
     saveFileFlg = true; // editページのみflgをtrueに
+
+    if (url_parse.query.back === 'cancel') {
+      console.log(postJson);
+    }
+  }
+
+  // admin page
+  if (url_parse.pathname === '/admin') {
+    Delete.Delete();
   }
 
   // saveFile
@@ -59,20 +72,20 @@ server.on('request', (req, res) => {
     saveFileFlg = false; // flgを初期状態に戻す
 
     Save.SaveJson(postJson);
-    console.log('-----------------saved--------------------');
+    console.log('-------------saved--------------------');
     postJson = '';
   }
 
   // ajax
   if (url_parse.pathname === '/record/report') {
-    console.log('-------------index------------------------');
-    Data.Data(res, url_parse, 'index');
+    console.log('-------------index---------------------');
+    Data.Data(res, url_parse, 'admin');
     return;
   }
 
   // reportpage
   if (url_parse.pathname === '/record/list') {
-    console.log('-------------Data------------------------');
+    console.log('-------------Data----------------------');
     Data.Data(res, url_parse, 'page');
     return;
   }
