@@ -33,6 +33,11 @@ class IndexPage extends Component {
 
   renderHtml() {
     const renderFile = this.state.data.map((value) => {
+
+      if (value.json.delete === 'true') {
+        return;
+      }
+
       return value.json.save;
     });
 

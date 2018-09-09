@@ -32,7 +32,6 @@ class AjaxConfig{
   }
 
   set setAjax(param){
-    console.log(param);
     this.param = param;
   }
 

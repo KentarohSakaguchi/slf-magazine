@@ -66,3 +66,5 @@ app/scripts/common.bundle.js
 app/scripts/vendor.bundle.js
 
 app/images
+
+.DS_Store

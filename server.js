@@ -6,12 +6,9 @@
 
 const http = require('http');
 const url = require('url');
-const fs = require('fs-extra');
-const glob = require('glob');
 
 const socketio = require('socket.io');
 
-const Config = require('./config/Config/Config');
 const Routes = require('./config/Config/Routes');
 
 const WriteCss = require('./config/Write/WriteCss');
@@ -19,9 +16,9 @@ const WriteJs = require('./config/Write/WriteJs');
 const WriteImage = require('./config/Write/WriteImage');
 const WriteJson = require('./config/Write/WriteJson');
 const WriteHtml = require('./config/Write/WriteHtml');
-const Ajax = require('./config/Ajax/Ajax');
-const Data = require('./config/Data/Data');
 
+const Data = require('./config/Data/Data');
+const Save = require('./config/Save/Save');
 const Post = require('./config/Post/Post');
 
 const chalk = require('chalk');
@@ -30,7 +27,7 @@ const chokidar = require('chokidar');
 const server = http.createServer();
 
 let postJson = '';
-let saveFileFlg = true; // jason書き込みflg
+let saveFileFlg = false; // jason書き込みflg
 
 console.log(chalk.magenta(`server listen localhost:3000`));
 
@@ -51,25 +48,17 @@ server.on('request', (req, res) => {
     });
   }
 
+  // edit page
   if (url_parse.pathname === '/edit') {
     saveFileFlg = true; // editページのみflgをtrueに
   }
 
-  
-  let jsonlist = glob.sync(`${Config.REC_PATH}/report/*.json`).length; // 保存されているjsonの数を調べる → 記事のjasonfileの名前とする(id-${jsonlist}.json)
-
   // saveFile
   if (url_parse.search === '?saved=true' && saveFileFlg) {
 
-    saveFileFlg = false;
-    jsonlist++;
+    saveFileFlg = false; // flgを初期状態に戻す
 
-    // postJsonをjsonfileとして保存
-    fs.writeFileSync(`${__dirname}/app/record/report/id-${jsonlist}.json`, postJson, (err) => {
-      if (err) {
-        throw err;
-      }
-    });
+    Save.SaveJson(postJson);
     console.log('-----------------saved--------------------');
     postJson = '';
   }

@@ -30,9 +30,16 @@ class RecordPage extends Component {
   }
 
   renderHtml() {
-    return this.state.data.map((value) => {
+    const renderFile = this.state.data.map((value) => {
+
+      if (value.json.delete === 'true') {
+        return;
+      }
+
       return value.json.save;
-    })
+    });
+
+    return renderFile.join('');
   }
   
 
