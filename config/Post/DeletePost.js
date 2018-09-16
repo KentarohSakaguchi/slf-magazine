@@ -28,7 +28,8 @@ const DeletePost = (req, res) => {
 
       posteadValue = qs.parse(body);
 
-      Read.Read.deleteFlgChange(posteadValue)
+      Read.Read.deleteFlgChange(posteadValue);
+      Read.Read.fileRemove(posteadValue);
 
       res.end();
 

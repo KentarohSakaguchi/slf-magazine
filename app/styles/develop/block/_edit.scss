@@ -120,6 +120,30 @@
       background-color: rgba($color_pink, 0.5);
     }
 
+    &--return {
+      background-color: $color_mint;
+      right: calc(3.2rem + 1.6rem + 1.6rem);
+
+      &::before {
+        content: '';
+        width: 2px;
+        height: 50%;
+        background-color: $color_white;
+        margin: auto;
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+
+      &:hover {
+        background-color: rgba($color_mint, 0.5);
+      }
+
+    }
+
     &--plus,
     &--rec,
     &--close {
