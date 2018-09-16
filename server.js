@@ -21,6 +21,7 @@ const Data = require('./config/Data/Data');
 const Save = require('./config/Save/Save');
 const Post = require('./config/Post/Post');
 const Delete = require('./config/Delete/Delete');
+const Remove = require('./config/Remove/Remove');
 
 const chalk = require('chalk');
 const chokidar = require('chokidar');
@@ -32,6 +33,11 @@ let saveFileFlg = false; // jason書き込みflg
 
 console.log(chalk.magenta(`server listen localhost:3000`));
 
+// 削除記事のデータ消去
+Remove.Remove();
+
+
+// サーバーリクエストの処理
 server.on('request', (req, res) => {
 
   console.log(req.method);
@@ -46,8 +52,6 @@ server.on('request', (req, res) => {
   if (req.method === 'POST') {
     postJson = Post.Post(req, res, url_path).then((result) => {
       postJson = result;
-      console.log('=@@@@@@');
-      console.log(result);
     });
   }
 

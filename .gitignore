@@ -67,4 +67,6 @@ app/scripts/vendor.bundle.js
 
 app/images
 
+database/memo.txt
+
 .DS_Store
