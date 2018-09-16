@@ -6,15 +6,12 @@
 
 const fs = require('fs-extra');
 const glob = require('glob');
-const addDays = require('date-fns/add_days');
-const isBefore = require('date-fns/is_before')
 const chalk = require('chalk');
 const Config = require('../Config/Config');
 
-const flgDay = addDays(new Date(), -15); // 15日前を算出
-
 /**
- * Jsonのdeleteが本日から15日以上経っていたらJsonを削除する
+ * Jsonのdeleteが'delete'の場合はファイルを削除する
+ * 呼び出し元 Read/Read.js
  */
 const Remove = () => {
 
@@ -30,17 +27,14 @@ const Remove = () => {
         let readJasonCunk = '';
         readJasonCunk += jsonData;
         readJasonCunk = JSON.parse(readJasonCunk);
+        console.log(readJasonCunk);
 
-        const dayCheck = isBefore(readJasonCunk.time, flgDay);
-
-        if (readJasonCunk.delete === 'true' && dayCheck) {
+        if (readJasonCunk.delete === 'delete') {
 
           fs.unlink(value, () => {
 
-            if (jsonList.length === index + 1) {
-              console.log(chalk.red.bold(`delete 15day ago ${value} file remove!!`));
-              resolve();
-            }
+            console.log(chalk.red.bold(`delete * ${value} file remove!!`));
+            resolve();
           });
         }
       });

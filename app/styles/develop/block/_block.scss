@@ -11,6 +11,10 @@
     & + & {
       margin-top: 3.2rem;
     }
+
+    &--restore {
+      position: relative;
+    }
   }
 
   &__header {
@@ -86,5 +90,25 @@
 
   &__link {
     color: $color_mint;
+  }
+
+  &__state {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  &__state-inner {
+    padding: 0.8rem;
+    font-size: $fs_ss;
+    color: $color_white;
+
+    &--delete {
+      background-color: $color_red;
+    }
+
+    &--return {
+      background-color: $color_mint;
+    }
   }
 }

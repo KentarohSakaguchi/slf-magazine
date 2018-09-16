@@ -11,6 +11,7 @@ import Submit from '../component/Submit/Submit';
 import IndexPage from '../component/IndexPage/IndexPage';
 import RecordPage from '../component/RecordPage/RecordPage';
 import AdminPage from '../component/AdminPage/AdminPage';
+import RestorationPage from '../component/RestorationPage/RestorationPage'
 // import Mount from '../component/Mount';
 
 const edit = document.getElementById('js-edit');
@@ -47,6 +48,13 @@ const adminPage = document.getElementById('js-admin-page');
 if ([adminPage][0] !== null) {
   ReactDOM.render(
     <AdminPage />, adminPage
+  );
+}
+
+const restorationPage = document.getElementById('js-restoration-page');
+if ([restorationPage][0] !== null) {
+  ReactDOM.render(
+    <RestorationPage />, restorationPage
   );
 }
 

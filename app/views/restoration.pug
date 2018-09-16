@@ -1,0 +1,17 @@
+extends _layout/_default
+
+block append vars
+  -
+    title       = '削除した記事の管理'
+    description = '';
+    admin = true;
+
+block content
+  include _include/_header.pug
+  article.article
+    main.main(role='main')
+      form(action='/admin', method='post')
+        #js-restoration-page
+      //- include _include/_ad.pug
+
+block footer

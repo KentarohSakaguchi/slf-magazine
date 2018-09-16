@@ -3,8 +3,10 @@ extends _layout/_default
 block append vars
   -
     title       = '記事の作成'
+    admin = true;
 
 block content
+  include _include/_header.pug
   article.article
     main.main(role='main')
       form(action="/result", method='post')
