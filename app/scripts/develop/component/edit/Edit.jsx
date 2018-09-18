@@ -35,7 +35,8 @@ class Edit extends Component {
       { value: 'h4', text: '小見出し' },
       { value: 'p', text: '文言' },
       { value: 'code', text: 'コード' },
-      { value: 'cmd', text: 'コマンド' }
+      { value: 'cmd', text: 'コマンド' },
+      { value: 'img', text: '画像' }
     ];
 
     this.langList = ['javascript', 'css', 'html', 'ruby', 'python', 'go', 'php'];
