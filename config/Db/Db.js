@@ -1,10 +1,10 @@
 /**
  * @file Db
+ * mysql version 5.7
  *
  * @author Chamado
  */
 
-// requireの設定
 const mysql = require('mysql2');
 const CONF = require('../../database/conf');
 
