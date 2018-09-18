@@ -34,6 +34,8 @@ class EditTextRender extends Component {
         break;
       case this.props.selectValueList[4].value:
         block = <div className="blocks__code-preview"><code className="blocks__code-preview-text"><p>{this.props.textValue}</p></code></div>;
+      // case this.props.selectValueList[5].value:
+      //   block = <div className="blocks__image"><img src={`/images/${this.props.textValue}`}/></div>;
 
         break;
       default:

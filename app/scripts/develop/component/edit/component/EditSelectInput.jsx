@@ -63,14 +63,19 @@ class EditSelectInput extends Component {
           </select>
         </label>
         <label className="edit__input-input">
-          <input
-            className="edit__input"
-            type="text"
-            placeholder="文言を入力"
-            value={this.state.value}
-            onChange={(e) => this.valueChange(e.target.value, this.props.textId)}
-            name={this.props.textId}
-          />
+          {(() => {
+            console.log(this.state.value);
+            return (
+              <input
+                className="edit__input"
+                type="text"
+                placeholder="文言を入力"
+                value={this.state.value}
+                onChange={(e) => this.valueChange(e.target.value, this.props.textId)}
+                name={this.props.textId}
+              />
+            );
+          })()}
         </label>
         <button type="button" className="edit__button edit__button--minus" onClick={this.removeInput}></button>
       </div>

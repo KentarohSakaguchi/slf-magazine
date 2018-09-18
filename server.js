@@ -22,6 +22,8 @@ const Save = require('./config/Save/Save');
 const Post = require('./config/Post/Post');
 const Delete = require('./config/Delete/Delete');
 
+const Db = require('./config/Db/Db');
+
 const chalk = require('chalk');
 const chokidar = require('chokidar');
 
@@ -31,6 +33,8 @@ let postJson = '';
 let saveFileFlg = false; // jason書き込みflg
 
 console.log(chalk.magenta(`server listen localhost:3000`));
+
+Db.Db();
 
 // サーバーリクエストの処理
 server.on('request', (req, res) => {
