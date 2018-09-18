@@ -6,16 +6,16 @@
 
 // requireの設定
 const mysql = require('mysql2');
-const PAS = require('../../database/conf');
+const CONF = require('../../database/conf');
 
 const Db = () => {
 
   // MySQLの接続情報
   const connection = mysql.createConnection({
-    host : 'localhost',
-    user : 'root',
-    database: 'ch1',
-    password: PAS.PAS
+    host : CONF.HOST,
+    user : CONF.USER,
+    database: CONF.DATABASE,
+    password: CONF.PAS
   });
 
   // 接続
