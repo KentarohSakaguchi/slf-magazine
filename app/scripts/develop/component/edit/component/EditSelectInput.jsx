@@ -43,6 +43,18 @@ class EditSelectInput extends Component {
     return this.props.textValueChange(setValue, idNumber);
   }
 
+  /**
+   * 改行入力で\nをvalueに入れる
+   */
+  keyCodeChange(keyCode, textId) {
+    const submitKeyCode = 13;
+    if (keyCode === submitKeyCode) {
+      this.setState({ value: `${this.state.value}\n`});
+      const idNumber = Number(textId.replace('inputId', ''));
+      return this.props.textValueChange(this.state.value, idNumber);
+    }
+  }
+
   removeInput() {
     this.setState({ value: ''});
     const idNumber = Number(this.props.textId.replace('inputId', ''));
@@ -64,14 +76,13 @@ class EditSelectInput extends Component {
         </label>
         <label className="edit__input-input">
           {(() => {
-            console.log(this.state.value);
             return (
-              <input
+              <textarea
                 className="edit__input"
-                type="text"
                 placeholder="文言を入力"
                 value={this.state.value}
                 onChange={(e) => this.valueChange(e.target.value, this.props.textId)}
+                onKeyDown={(e) => this.keyCodeChange(e.keyCode, this.props.textId)}
                 name={this.props.textId}
               />
             );

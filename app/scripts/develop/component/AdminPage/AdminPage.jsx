@@ -106,6 +106,7 @@ class AdminPage extends Component {
                                 </div>
                               </div>
                               <div className="admin__button-wrap">
+                                <a href={`edit?${idName}`} data-id={`id-${idName}`} className="edit__button edit__button--return"></a>
                                 <button type="button" data-id={`id-${idName}`} className="edit__button edit__button--minus" onClick={(event) => this.delete(event)}></button>
                                 <input type="hidden" value={value.delete} />
                               </div>

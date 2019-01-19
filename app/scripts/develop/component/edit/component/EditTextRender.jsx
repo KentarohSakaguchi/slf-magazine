@@ -18,6 +18,7 @@ class EditTextRender extends Component {
   renderTextBlock() {
     let block = '';
 
+    console.log(this.props.textValue)
     switch(this.props.selectValue) {
 
       case this.props.selectValueList[0].value:
