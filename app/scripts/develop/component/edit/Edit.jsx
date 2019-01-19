@@ -58,6 +58,15 @@ class Edit extends Component {
     };
 
     this.addFlg = false;
+
+    // 改行を入力でsubmitさせない
+    document.addEventListener('keydown', (event) => {
+      const submitKeyCode = 13;
+      const keyName = event.keyCode;
+      if (keyName === submitKeyCode) {
+        event.preventDefault();
+      }
+    });
   }
 
   /**

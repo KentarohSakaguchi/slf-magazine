@@ -124,6 +124,16 @@
       background-color: $color_mint;
       right: calc(3.2rem + 1.6rem + 1.6rem);
 
+      &::after {
+        width: 50%;
+        height: 2px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+
       &::before {
         content: '';
         width: 2px;
