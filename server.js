@@ -111,6 +111,7 @@ server.on('request', (req, res) => {
 
     case 'js':
       console.log('@js');
+      console.log(url_parse);
       WriteJs.WriteJs(res, url_parse);
       break;
 
