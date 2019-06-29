@@ -6,7 +6,7 @@
  */
 
 const mysql = require('mysql2');
-const CONF = require('../../database/conf');
+// const CONF = require('../../database/conf');
 
 const Db = () => {
 

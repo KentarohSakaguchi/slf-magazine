@@ -23,7 +23,7 @@ const Save = require('./config/Save/Save');
 const Post = require('./config/Post/Post');
 const Delete = require('./config/Delete/Delete');
 
-const Db = require('./config/Db/Db');
+// const Db = require('./config/Db/Db');
 
 const chalk = require('chalk');
 const chokidar = require('chokidar');
