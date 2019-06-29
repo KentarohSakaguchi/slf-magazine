@@ -40,7 +40,12 @@ class Edit extends Component {
       { value: 'img', text: '画像' }
     ];
 
-    this.langList = ['javascript', 'css', 'html', 'ruby', 'python', 'go', 'php'];
+    // headerの言語ジャンルの取得
+    const langListHtml = document.getElementsByClassName('js-header-trigger');
+    const langListHtmlNode = Array.prototype.slice.call(langListHtml);
+    this.langList = langListHtmlNode.map((value) => {
+      return value.getAttribute('data-lang');
+    })
 
     this.textArray = []; // テキストを格納する配列
     this.selectArray = [this.selectValueList[0].value]; // セレクト(見出しやコードなど)を格納する配列

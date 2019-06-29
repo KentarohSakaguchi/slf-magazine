@@ -46,6 +46,14 @@
     &--go {
       background-color: #01d9e8;
     }
+
+    &--aws {
+      background-color: #ff9a01;
+    }
+
+    &--firebase {
+      background-color: #fecb2c;
+    }
   }
 
   &__sub {
@@ -80,6 +88,14 @@
 
     &--go {
       border: 0.4rem solid #01d9e8;
+    }
+
+    &--aws {
+      border: 0.4rem solid #ff9a01;
+    }
+
+    &--firebase {
+      border: 0.4rem solid #fecb2c;
     }
   }
 }
