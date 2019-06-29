@@ -60,12 +60,8 @@ typings/
 # next.js build output
 .next
 
-app/record
-
 app/scripts/common.bundle.js
 app/scripts/vendor.bundle.js
-
-app/images
 
 database/
 
