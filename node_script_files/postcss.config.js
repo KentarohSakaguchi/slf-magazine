@@ -49,10 +49,10 @@ if (!config.envFlg) {
 // 実行時のメッセージ
 console.log(chalk.blue.bold('scss -> compile finish'));
 
-// 終了処理
-process.on('SIGINT', () => {
-  process.exit(0);
-});
+// // 終了処理
+// process.on('SIGINT', () => {
+//   process.exit(0);
+// });
 
 // 実行
 module.exports = {

@@ -1,6 +1,6 @@
 /**
  * @file Ajax APIとして返却する
- *
+ * 01/19不使用
  * @author Chamado
  */
 

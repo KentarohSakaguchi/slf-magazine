@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { Ajax, GetAjax, SetAjax } from '../Ajax/Ajax';
 import EditHeaderRender from './component/EditHeaderRender';
 import EditTextRender from './component/EditTextRender';
 
@@ -41,10 +42,15 @@ class Edit extends Component {
 
     this.langList = ['javascript', 'css', 'html', 'ruby', 'python', 'go', 'php'];
 
-    this.addInputArray = [0];
-    this.addTextArray = [0];
     this.textArray = []; // テキストを格納する配列
     this.selectArray = [this.selectValueList[0].value]; // セレクト(見出しやコードなど)を格納する配列
+    this.addInputArray = [0]; // テキストフォームの数
+    this.addTextArray = [0]; // テキストフォームの数
+
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
 
     this.state = {
       pageTitle: '',
@@ -54,10 +60,43 @@ class Edit extends Component {
       selectLangValue: this.langList[0],
       input: 0,
       activeClass: '',
-      submitClass: ''
+      submitClass: '',
+      time: `${year}.${month}.${day}`
     };
 
     this.addFlg = false;
+
+    // 再編集の場合はajaxでjsonを取得し各種値をsetする
+    const locationSearch = location.search;
+    if (locationSearch.match(/id=/)) {
+      Ajax('/record/report/onepage');
+      SetAjax(locationSearch);
+
+      GetAjax().then((result) => {
+        console.log(result);
+        Object.keys(result.data[0].json).forEach((value, index) => {
+          if (value.match(/inputId/)) {
+            if (value.match(/selectinputId/)) {
+              this.selectArray.push(result.data[0].json[value]);
+              this.addTextArray.push(index);
+            } else {
+              this.textArray.push(result.data[0].json[value]);
+              this.addInputArray.push(index);
+            }
+          }
+        });
+        console.log(this.textArray);
+        this.setState({
+          pageTitle: result.data[0].title,
+          selectLangValue: result.data[0].lang,
+          textLangValue: result.data[0].word,
+          time: result.data[0].time,
+          textValue: this.textArray,
+          selectValue: this.selectArray,
+          input: result.data[0].length
+        });
+      });
+    }
 
     // 改行を入力でsubmitさせない
     document.addEventListener('keydown', (event) => {
@@ -104,18 +143,6 @@ class Edit extends Component {
    */
   selectValueChangeLang(value) {
     this.setState({ selectLangValue: value} );
-  }
-
-  /**
-   * 日付表示
-   */
-  setDate() {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const setDateValue = `${year}.${month}.${day}`;
-    return setDateValue;
   }
 
   /**
@@ -231,8 +258,8 @@ class Edit extends Component {
               />
               <section className="blocks__text">
                 <div className="blocks__time">
-                  <p>{this.setDate()}</p>
-                  <input type="hidden" name="time" value={this.setDate()} />
+                  <p>{this.state.time}</p>
+                  <input type="hidden" name="time" value={this.state.time} />
                 </div>
                 { this.addTextRender() }
               </section>

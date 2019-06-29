@@ -35,6 +35,36 @@ const Data = (res, url_parse, pagename) => {
 
   res.writeHead(200, { 'Content-Type': 'application/json' });
 
+  if (pagename === 'onepage') {
+
+    const reSetPath = setPath.replace('?id=', 'id-');
+    const jsonListOnce = `${Config.REC_PATH}/report/${reSetPath}.json`;
+    const jsonDataOnce = fs.readFileSync(jsonListOnce);
+    let readJasonOnceCunk = '';
+    readJasonOnceCunk += jsonDataOnce;
+    dataList.json = JSON.parse(readJasonOnceCunk);
+    dataList.id = setPath.replace('?id=', '');
+    dataList.lang = dataList.json.lang;
+    dataList.word = dataList.json.word;
+    dataList.title = dataList.json.title;
+    dataList.time = dataList.json.time;
+    dataList.delete = dataList.json.delete;
+
+    // 単体ページ取得
+    const wraiteDataOnePage = {
+      json: dataList.json,
+      lang: dataList.lang,
+      word: dataList.word,
+      title: dataList.json.title,
+      time: dataList.json.time,
+      id: dataList.id,
+      length: jsonList.length,
+      delete: dataList.delete
+    }
+
+    resultArray.push(wraiteDataOnePage);
+  }
+
   // 記事で使用されている言語の洗い出し
   jsonList.forEach((value) => {
 

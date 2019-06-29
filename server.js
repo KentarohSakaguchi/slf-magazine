@@ -8,6 +8,7 @@ const http = require('http');
 const url = require('url');
 
 const socketio = require('socket.io');
+const execSh = require('exec-sh');
 
 const Routes = require('./config/Config/Routes');
 
@@ -34,7 +35,7 @@ let saveFileFlg = false; // jason書き込みflg
 
 console.log(chalk.magenta(`server listen localhost:3000`));
 
-Db.Db();
+// Db.Db();
 
 // サーバーリクエストの処理
 server.on('request', (req, res) => {
@@ -79,14 +80,21 @@ server.on('request', (req, res) => {
     postJson = '';
   }
 
-  // ajax
+  // ajax 全件数取得
   if (url_parse.pathname === '/record/report') {
     console.log('-------------index---------------------');
     Data.Data(res, url_parse, 'admin');
     return;
   }
 
-  // reportpage
+  // ajax 単ページ取得
+  if (url_parse.pathname === '/record/report/onepage') {
+    console.log('-------------onepage---------------------');
+    Data.Data(res, url_parse, 'onepage');
+    return;
+  }
+
+  //ajax reportpage
   if (url_parse.pathname === '/record/list') {
     console.log('-------------Data----------------------');
     Data.Data(res, url_parse, 'page');
@@ -174,6 +182,7 @@ chokidarWatch.on('change', (path) => {
 
 // 終了処理
 process.on('SIGINT', () => {
+  execSh('mysql.server stop');
   console.log('\nタスクが終了されました。');
   process.exit(0);
 });

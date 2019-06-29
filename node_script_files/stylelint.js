@@ -71,6 +71,6 @@ if (config.modeFlg) {
 }
 
 // 終了処理
-process.on('SIGINT', () => {
-  process.exit(0);
-});
+// process.on('SIGINT', () => {
+//   process.exit(0);
+// });

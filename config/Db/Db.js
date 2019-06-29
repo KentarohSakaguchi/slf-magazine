@@ -26,8 +26,8 @@ const Db = () => {
 
     if (err) { console.log('err: ' + err); }
 
-    console.log(`item:name:${rows[0].name}`);
-    console.log(`item:id:${rows[0].id}`);
+    console.log(`item:name: ${rows[0].name}`);
+    console.log(`item:id: ${rows[0].id}`);
     console.log(fields);
     console.log(rows);
 
