@@ -8,22 +8,23 @@ header.header
         img(src='images/logo.svg', alt='slf-magazine').header__logo-img
     .header__menu-wrap
       ul.header__menu
-        if !admin
-          li.header__list
-            a(href="/javascript").header__list-link.js-header-trigger javascript
-          li.header__list
-            a(href="/css").header__list-link.js-header-trigger css
-          li.header__list
-            a(href="/html").header__list-link.js-header-trigger html
-          li.header__list
-            a(href="/ruby").header__list-link.js-header-trigger ruby
-          li.header__list
-            a(href="/python").header__list-link.js-header-trigger python
-          li.header__list
-            a(href="/go").header__list-link.js-header-trigger go
-          li.header__list
-            a(href="/php").header__list-link.js-header-trigger php
-        else
+        - let styles = ''
+        if admin
+          - let styles = 'display: none';
+          li.header__list(style=styles)
+            a(href="/javascript", data-lang='javascript').header__list-link.js-header-trigger javascript
+          li.header__list(style=styles)
+            a(href="/css", data-lang='css').header__list-link.js-header-trigger css
+          li.header__list(style=styles)
+            a(href="/html", data-lang='html').header__list-link.js-header-trigger html
+          li.header__list(style=styles)
+            a(href="/python", data-lang='python').header__list-link.js-header-trigger python
+          li.header__list(style=styles)
+            a(href="/go", data-lang='go').header__list-link.js-header-trigger go
+          li.header__list(style=styles)
+            a(href="/aws", data-lang='aws').header__list-link.js-header-trigger aws
+          li.header__list(style=styles)
+            a(href="/firebase", data-lang='firebase').header__list-link.js-header-trigger firebase
           li.header__list
             a(href="/admin").header__list-link.js-admin-header-trigger admin
           li.header__list
