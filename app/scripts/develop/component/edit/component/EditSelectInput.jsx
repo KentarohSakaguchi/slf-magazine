@@ -14,7 +14,7 @@ class EditSelectInput extends Component {
     this.removeInput = this.removeInput.bind(this);
 
     this.state = {
-      value: ''
+      value: this.props.textValue
     }
   }
 

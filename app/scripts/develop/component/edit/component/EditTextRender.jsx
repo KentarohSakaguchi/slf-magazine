@@ -17,8 +17,16 @@ class EditTextRender extends Component {
 
   renderTextBlock() {
     let block = '';
+    let linkText = '';
 
-    console.log(this.props.textValue)
+    console.log(this.props.textValue);
+
+    if (this.props.textValue) {
+      linkText = this.props.textValue.replace(/(.*?)\*\*\*\*(.*?)\*\*\*\*(.*?)$/g, '$2');
+    }
+
+    console.log(linkText);
+
     switch(this.props.selectValue) {
 
       case this.props.selectValueList[0].value:
@@ -42,7 +50,7 @@ class EditTextRender extends Component {
       default:
         block = <h3 className="blocks__title">{this.props.textValue}</h3>;
         break;
-   }
+    }
 
     return block;
 
