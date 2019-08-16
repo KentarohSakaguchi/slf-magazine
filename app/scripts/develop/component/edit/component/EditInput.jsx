@@ -20,9 +20,9 @@ class EditInput extends Component {
 
   render() {
     return(
-      <div className="edit__input-block">
-        <label className="edit__input-input">
-          <input className="edit__input" type="text" name="title" placeholder="ページタイトルを入力" value={this.props.headerValue} onChange={(e) => this.valueChange(e.target.value)} />
+      <div className="display__input-block">
+        <label className="display__input-input">
+          <input className="display__input" type="text" name="title" placeholder="ページタイトルを入力" autocomplete="off" value={this.props.headerValue} onChange={(e) => this.valueChange(e.target.value)} />
         </label>
       </div>
     );
