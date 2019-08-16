@@ -34,3 +34,27 @@ $dev-lg: 1266px;
     content: '';
   }
 }
+
+@define-mixin position_centar {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+@define-mixin input_display {
+  color: transparent;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  outline: none;
+  display: block;
+  width: 100%;
+  transition: $tr_most_slow;
+
+  &:focus {
+    border-bottom: 1px solid $color_pink;
+  }
+}
