@@ -33,6 +33,7 @@
 
   &__title {
     font-size: $fs_xs;
+    min-height: 2.4rem;
   }
 
   &__text {
@@ -47,6 +48,7 @@
       font-size: $fs_mx;
       background-color: $color_mint_alpha;
       padding: 0.8rem;
+      text-align: justify;
     }
   }
 
@@ -120,5 +122,10 @@
 
   &__lang-wrapper {
     position: relative;
+  }
+
+  &__text-wrapper {
+    position: relative;
+    width: 100%;
   }
 }

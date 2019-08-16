@@ -25,7 +25,6 @@ class Edit extends Component {
     this.textLangValueChange = this.textLangValueChange.bind(this);
     this.selectValueChangeLang = this.selectValueChangeLang.bind(this);
     this.addInput = this.addInput.bind(this);
-    this.addInputRender = this.addInputRender.bind(this);
     this.addTextRender = this.addTextRender.bind(this);
     this.textValueChangeRemove = this.textValueChangeRemove.bind(this);
     this.editClose = this.editClose.bind(this);
@@ -50,7 +49,6 @@ class Edit extends Component {
 
     this.textArray = []; // テキストを格納する配列
     this.selectArray = [this.selectValueList[0].value]; // セレクト(見出しやコードなど)を格納する配列
-    this.addInputArray = [0]; // テキストフォームの数
     this.addTextArray = [0]; // テキストフォームの数
 
     const date = new Date();
@@ -87,7 +85,6 @@ class Edit extends Component {
               this.addTextArray.push(index);
             } else {
               this.textArray.push(result.data[0].json[value]);
-              this.addInputArray.push(index);
             }
           }
         });
@@ -160,30 +157,7 @@ class Edit extends Component {
   }
 
   /**
-   * フォームの複製
-   */
-  addInputRender() {
-
-    if (this.addFlg) {
-      this.addInputArray.push(this.state.input);
-    }
-
-    return this.addInputArray.map((_value, _index) => (
-      this.addFlg = false,
-      <EditSelectInput
-        key={_index}
-        textId={`inputId${_index}`}
-        textValue={this.state.textValue[_index]}
-        textValueChange={this.textValueChange}
-        selectValueList={this.selectValueList}
-        selectValue={this.selectValueChange}
-        valueRemove={this.textValueChangeRemove}
-      />
-    ));
-  }
-
-  /**
-   * 文言の複製
+   * フォーム, 文言の複製
    */
   addTextRender() {
 
@@ -192,13 +166,23 @@ class Edit extends Component {
     }
 
     return this.addTextArray.map((_value, _index) => (
-      <EditTextRender
-        key={_index}
-        textId={`inputTextId-${_index}`}
-        textValue={this.state.textValue[_index]}
-        selectValue={this.state.selectValue[_index]}
-        selectValueList={this.selectValueList}
-      />
+      this.addFlg = false,
+      <div className="blocks__text-wrapper" key={_index}>
+        <EditTextRender
+          textId={`inputTextId-${_index}`}
+          textValue={this.state.textValue[_index]}
+          selectValue={this.state.selectValue[_index]}
+          selectValueList={this.selectValueList}
+        />
+        <EditSelectInput
+          textId={`inputId${_index}`}
+          textValue={this.state.textValue[_index]}
+          textValueChange={this.textValueChange}
+          selectValueList={this.selectValueList}
+          selectValue={this.selectValueChange}
+          valueRemove={this.textValueChangeRemove}
+        />
+      </div>
     ));
   }
 
@@ -208,7 +192,6 @@ class Edit extends Component {
   textValueChangeRemove(removeId) {
 
     this.textArray.splice(removeId, 1);
-    this.addInputArray.pop();
     this.addTextArray.pop();
 
     this.setState({
@@ -254,7 +237,7 @@ class Edit extends Component {
       <div className="edit-wrapper">
         <input type="hidden" name="delete" value="false" />
         <input type="hidden" name="save" id="js-saveHtml"/>
-        <section className="blocks display">
+        <section className={`blocks display ${this.state.activeClass}`}>
           <div className="blocks__box">
             <div className="blocks__inner">
               <header className="blocks__header">
@@ -289,10 +272,7 @@ class Edit extends Component {
         </section>
 
         <div className={`edit ${this.state.activeClass}`}>
-          <div className="edit__inner">
-            
-            { this.addInputRender() }
-          </div>
+          
           <div className="edit__button-wrapper">
             <button
               type="button"
