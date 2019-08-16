@@ -44,7 +44,7 @@ $dev-lg: 1266px;
 }
 
 @define-mixin input_display {
-  color: transparent;
+  color: inherit;
   border-left: none;
   border-top: none;
   border-right: none;
