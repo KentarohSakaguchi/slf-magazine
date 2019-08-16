@@ -1,9 +1,34 @@
 .display {
   &__input-block {
     @mixin position_centar;
+
+    &--lang {
+      display: flex;
+    }
   }
 
   &__input {
     @mixin input_display;
+  }
+
+  &__input-select {
+    @mixin input_display;
+
+    &:focus {
+      border-bottom: none;
+      outline: auto;
+    }
+  }
+
+  &__input-title {
+    &--lang {
+      display: inline-block;
+    }
+  }
+
+  &__input-input {
+    &--lang {
+      display: inline-block;
+    }
   }
 }

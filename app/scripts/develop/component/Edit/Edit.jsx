@@ -9,6 +9,7 @@ import EditInput from './component/EditInput';
 import EditSelectInput from './component/EditSelectInput';
 import EditSelectLang from './component/EditSelectLang';
 
+
 /**
  * Editページの処理
  */
@@ -253,14 +254,29 @@ class Edit extends Component {
       <div className="edit-wrapper">
         <input type="hidden" name="delete" value="false" />
         <input type="hidden" name="save" id="js-saveHtml"/>
-        <section className="blocks">
+        <section className="blocks display">
           <div className="blocks__box">
             <div className="blocks__inner">
-              <EditHeaderRender
-                headerValue={this.state.pageTitle}
-                selectLang={this.state.selectLangValue}
-                langText={this.state.textLangValue}
-              />
+              <header className="blocks__header">
+                <div className="blocks__title-wrapper">
+                  <EditHeaderRender
+                    headerValue={this.state.pageTitle}
+                  />
+                  <EditInput
+                    headerValue={this.state.pageTitle}
+                    headerValueChange={this.titleValueChange}
+                  />
+                </div>
+                <div className="blocks__lang-wrapper">
+                  <EditSelectLang
+                    textLangValue={this.state.textLangValue}
+                    textLangValueChange={this.textLangValueChange}
+                    selectLangList={this.langList}
+                    selectLangValue={this.state.selectLangValue}
+                    selectLangValueChange={this.selectValueChangeLang}
+                  />
+                </div>
+              </header>
               <section className="blocks__text">
                 <div className="blocks__time">
                   <p>{this.state.time}</p>
@@ -274,17 +290,7 @@ class Edit extends Component {
 
         <div className={`edit ${this.state.activeClass}`}>
           <div className="edit__inner">
-            <EditInput
-              headerValue={this.state.pageTitle}
-              headerValueChange={this.titleValueChange}
-            />
-            <EditSelectLang
-              textLangValue={this.state.textLangValue}
-              textLangValueChange={this.textLangValueChange}
-              selectLangList={this.langList}
-              selectLangValue={this.state.selectLangValue}
-              selectLangValueChange={this.selectValueChangeLang}
-            />
+            
             { this.addInputRender() }
           </div>
           <div className="edit__button-wrapper">
