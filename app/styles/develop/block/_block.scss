@@ -112,4 +112,9 @@
       background-color: $color_mint;
     }
   }
+
+  &__title-wrapper {
+    position: relative;
+    width: 100%;
+  }
 }

@@ -1,0 +1,9 @@
+.display {
+  &__input-block {
+    @mixin position_centar;
+  }
+
+  &__input {
+    @mixin input_display;
+  }
+}
