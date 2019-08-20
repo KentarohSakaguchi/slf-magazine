@@ -15,8 +15,10 @@ class EditSelectInput extends Component {
 
     this.state = {
       value: this.props.textValue,
-      selectedValue: 'h3'
+      selectedValue: this.props.selectedValue
     }
+
+    console.log(this.state.value);
   }
 
   /**
@@ -32,7 +34,13 @@ class EditSelectInput extends Component {
 
   setOption() {
     const items = this.props.selectValueList.map((_item, _number) => (
-      <option key={_number} value={_item.value}>{_item.text}</option>
+      (() => {
+        if (_item.value === this.state.selectedValue) {
+          return <option key={_number} value={_item.value} selected>{_item.text}</option>
+        } else {
+          return <option key={_number} value={_item.value}>{_item.text}</option>
+        }
+      })()
     ));
 
     return items;
@@ -107,7 +115,8 @@ EditSelectInput.propTypes = {
   textValueChange: PropTypes.func,
   textValue: PropTypes.string,
   textId: PropTypes.string,
-  valueRemove: PropTypes.func
+  valueRemove: PropTypes.func,
+  selectedValue: PropTypes.array
 }
 
 export default EditSelectInput;

@@ -111,3 +111,10 @@
     }
   }
 }
+
+.is-display {
+  .display__text-wrapper,
+  .display__input-block {
+    display: none;
+  }
+}

@@ -62,7 +62,7 @@ class Edit extends Component {
       selectValue: this.selectArray,
       textLangValue: '',
       selectLangValue: this.langList[0],
-      input: 0,
+      input: 0, // 記事のファイル名
       activeClass: '',
       submitClass: '',
       time: `${year}.${month}.${day}`
@@ -75,9 +75,13 @@ class Edit extends Component {
     if (locationSearch.match(/id=/)) {
       Ajax('/record/report/onepage');
       SetAjax(locationSearch);
-
       GetAjax().then((result) => {
-        console.log(result);
+        console.log(result.data[0])
+
+        // 配列を一旦初期化
+        this.selectArray.length = 0;
+        this.textArray.length = 0;
+
         Object.keys(result.data[0].json).forEach((value, index) => {
           if (value.match(/inputId/)) {
             if (value.match(/selectinputId/)) {
@@ -88,7 +92,9 @@ class Edit extends Component {
             }
           }
         });
-        console.log(this.textArray);
+
+        this.addTextArray.push(result.data[0].length);
+
         this.setState({
           pageTitle: result.data[0].title,
           selectLangValue: result.data[0].lang,
@@ -98,6 +104,9 @@ class Edit extends Component {
           selectValue: this.selectArray,
           input: result.data[0].length
         });
+
+        this.addTextArray.push(this.state.input);
+
       });
     }
 
@@ -165,8 +174,12 @@ class Edit extends Component {
       this.addTextArray.push(this.state.input);
     }
 
+    console.log("this.addTextArray");
+    console.log(this.addTextArray);
+
     return this.addTextArray.map((_value, _index) => (
       this.addFlg = false,
+      console.log(this.state.textValue[_index]),
       <div className="blocks__text-wrapper" key={_index}>
         <EditTextRender
           textId={`inputTextId-${_index}`}
@@ -180,6 +193,7 @@ class Edit extends Component {
           textValueChange={this.textValueChange}
           selectValueList={this.selectValueList}
           selectValue={this.selectValueChange}
+          selectedValue={this.state.selectValue[_index]}
           valueRemove={this.textValueChangeRemove}
         />
       </div>
@@ -216,7 +230,7 @@ class Edit extends Component {
    */
   onRec() {
     const saveTarget = document.getElementsByClassName('blocks');
-    const saveHtml = saveTarget[0].outerHTML;
+    const saveHtml = saveTarget[0].outerHTML.replace(/class="blocks display/, 'class="blocks is-display');
     const saveHtmlSet = document.getElementById('js-saveHtml');
     saveHtmlSet.setAttribute('value', saveHtml);
 
@@ -232,7 +246,7 @@ class Edit extends Component {
   }
 
   render() {
-    console.log(this.textArray);
+    console.log('!');
     return(
       <div className="edit-wrapper">
         <input type="hidden" name="delete" value="false" />

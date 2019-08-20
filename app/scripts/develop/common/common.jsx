@@ -4,7 +4,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import hljs from 'highlight.js'
+import hljs from 'highlight.js';
 
 import Edit from '../component/Edit/Edit';
 import Submit from '../component/Submit/Submit';
