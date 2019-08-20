@@ -73,21 +73,23 @@ class displaySelectLang extends Component {
             <span className={`labels__sub labels__sub--${this.props.selectLangValue}`}>{this.props.textLangValue}</span>
           </a>
         </div>
-        <div className="display__input-block display__input-block--lang">
-          <label
-            className="display__input-title display__input-title--lang"
-          >
-            <select
-              className="display__input-select"
-              name="lang"
-              value={this.props.selectLangValue}
-              onChange={(e) => this.handleChange(e.target.value)}>
-              {this.setOption()}
-            </select>
-          </label>
-          <label className="display__input-input display__input-input--lang">
-          <input className="display__input" type="text" name="word" placeholder="" value={this.props.textLangValue} onChange={(e) => this.valueChange(e.target.value)} />
-          </label>
+        <div className="display__text-wrapper">
+          <div className="display__input-block display__input-block--lang">
+            <label
+              className="display__input-title display__input-title--lang"
+            >
+              <select
+                className="display__input-select"
+                name="lang"
+                value={this.props.selectLangValue}
+                onChange={(e) => this.handleChange(e.target.value)}>
+                {this.setOption()}
+              </select>
+            </label>
+            <label className="display__input-input display__input-input--lang">
+            <input className="display__input" type="text" name="word" placeholder="" value={this.props.textLangValue} onChange={(e) => this.valueChange(e.target.value)} />
+            </label>
+          </div>
         </div>
       </React.Fragment>
     );

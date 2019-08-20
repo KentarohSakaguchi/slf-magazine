@@ -20,10 +20,12 @@ class EditInput extends Component {
 
   render() {
     return(
-      <div className="display__input-block">
-        <label className="display__input-input">
-          <textarea className="display__input display__input--header" type="text" name="title" placeholder="ページタイトルを入力" autoComplete="off" value={this.props.headerValue} onChange={(e) => this.valueChange(e.target.value)} />
-        </label>
+      <div className="display__text-wrapper">
+        <div className="display__input-block">
+          <label className="display__input-input">
+            <textarea className="display__input display__input--header" type="text" name="title" placeholder="ページタイトルを入力" autoComplete="off" value={this.props.headerValue} onChange={(e) => this.valueChange(e.target.value)} />
+          </label>
+        </div>
       </div>
     );
   }

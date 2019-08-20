@@ -19,13 +19,9 @@ class EditTextRender extends Component {
     let block = '';
     let linkText = '';
 
-    console.log(this.props.textValue);
-
     if (this.props.textValue) {
       linkText = this.props.textValue.replace(/(.*?)\*\*\*\*(.*?)\*\*\*\*(.*?)$/g, '$2');
     }
-
-    console.log(linkText);
 
     switch(this.props.selectValue) {
 
