@@ -41,7 +41,17 @@ class RecordPage extends Component {
 
     return renderFile.join('');
   }
-  
+
+  /**
+   * edit用データの削除処理
+   */
+  componentDidUpdate() {
+    const editElement = document.getElementsByClassName('display__text-wrapper');
+    const editElementNode = Array.prototype.slice.call(editElement, 0);
+    editElementNode.forEach((element) => {
+      element.remove();
+    });
+  }
 
   render() {
     return <div className="report" dangerouslySetInnerHTML={{__html: this.renderHtml()}}></div>

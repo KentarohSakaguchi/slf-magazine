@@ -9,6 +9,7 @@ import EditInput from './component/EditInput';
 import EditSelectInput from './component/EditSelectInput';
 import EditSelectLang from './component/EditSelectLang';
 
+
 /**
  * Editページの処理
  */
@@ -24,7 +25,6 @@ class Edit extends Component {
     this.textLangValueChange = this.textLangValueChange.bind(this);
     this.selectValueChangeLang = this.selectValueChangeLang.bind(this);
     this.addInput = this.addInput.bind(this);
-    this.addInputRender = this.addInputRender.bind(this);
     this.addTextRender = this.addTextRender.bind(this);
     this.textValueChangeRemove = this.textValueChangeRemove.bind(this);
     this.editClose = this.editClose.bind(this);
@@ -49,7 +49,6 @@ class Edit extends Component {
 
     this.textArray = []; // テキストを格納する配列
     this.selectArray = [this.selectValueList[0].value]; // セレクト(見出しやコードなど)を格納する配列
-    this.addInputArray = [0]; // テキストフォームの数
     this.addTextArray = [0]; // テキストフォームの数
 
     const date = new Date();
@@ -63,7 +62,7 @@ class Edit extends Component {
       selectValue: this.selectArray,
       textLangValue: '',
       selectLangValue: this.langList[0],
-      input: 0,
+      input: 0, // 記事のファイル名
       activeClass: '',
       submitClass: '',
       time: `${year}.${month}.${day}`
@@ -76,9 +75,13 @@ class Edit extends Component {
     if (locationSearch.match(/id=/)) {
       Ajax('/record/report/onepage');
       SetAjax(locationSearch);
-
       GetAjax().then((result) => {
-        console.log(result);
+        console.log(result.data[0])
+
+        // 配列を一旦初期化
+        this.selectArray.length = 0;
+        this.textArray.length = 0;
+
         Object.keys(result.data[0].json).forEach((value, index) => {
           if (value.match(/inputId/)) {
             if (value.match(/selectinputId/)) {
@@ -86,11 +89,12 @@ class Edit extends Component {
               this.addTextArray.push(index);
             } else {
               this.textArray.push(result.data[0].json[value]);
-              this.addInputArray.push(index);
             }
           }
         });
-        console.log(this.textArray);
+
+        this.addTextArray.push(result.data[0].length);
+
         this.setState({
           pageTitle: result.data[0].title,
           selectLangValue: result.data[0].lang,
@@ -100,6 +104,9 @@ class Edit extends Component {
           selectValue: this.selectArray,
           input: result.data[0].length
         });
+
+        this.addTextArray.push(this.state.input);
+
       });
     }
 
@@ -159,30 +166,7 @@ class Edit extends Component {
   }
 
   /**
-   * フォームの複製
-   */
-  addInputRender() {
-
-    if (this.addFlg) {
-      this.addInputArray.push(this.state.input);
-    }
-
-    return this.addInputArray.map((_value, _index) => (
-      this.addFlg = false,
-      <EditSelectInput
-        key={_index}
-        textId={`inputId${_index}`}
-        textValue={this.state.textValue[_index]}
-        textValueChange={this.textValueChange}
-        selectValueList={this.selectValueList}
-        selectValue={this.selectValueChange}
-        valueRemove={this.textValueChangeRemove}
-      />
-    ));
-  }
-
-  /**
-   * 文言の複製
+   * フォーム, 文言の複製
    */
   addTextRender() {
 
@@ -190,14 +174,29 @@ class Edit extends Component {
       this.addTextArray.push(this.state.input);
     }
 
+    console.log("this.addTextArray");
+    console.log(this.addTextArray);
+
     return this.addTextArray.map((_value, _index) => (
-      <EditTextRender
-        key={_index}
-        textId={`inputTextId-${_index}`}
-        textValue={this.state.textValue[_index]}
-        selectValue={this.state.selectValue[_index]}
-        selectValueList={this.selectValueList}
-      />
+      this.addFlg = false,
+      console.log(this.state.textValue[_index]),
+      <div className="blocks__text-wrapper" key={_index}>
+        <EditTextRender
+          textId={`inputTextId-${_index}`}
+          textValue={this.state.textValue[_index]}
+          selectValue={this.state.selectValue[_index]}
+          selectValueList={this.selectValueList}
+        />
+        <EditSelectInput
+          textId={`inputId${_index}`}
+          textValue={this.state.textValue[_index]}
+          textValueChange={this.textValueChange}
+          selectValueList={this.selectValueList}
+          selectValue={this.selectValueChange}
+          selectedValue={this.state.selectValue[_index]}
+          valueRemove={this.textValueChangeRemove}
+        />
+      </div>
     ));
   }
 
@@ -207,7 +206,6 @@ class Edit extends Component {
   textValueChangeRemove(removeId) {
 
     this.textArray.splice(removeId, 1);
-    this.addInputArray.pop();
     this.addTextArray.pop();
 
     this.setState({
@@ -232,7 +230,7 @@ class Edit extends Component {
    */
   onRec() {
     const saveTarget = document.getElementsByClassName('blocks');
-    const saveHtml = saveTarget[0].outerHTML;
+    const saveHtml = saveTarget[0].outerHTML.replace(/class="blocks display/, 'class="blocks is-display');
     const saveHtmlSet = document.getElementById('js-saveHtml');
     saveHtmlSet.setAttribute('value', saveHtml);
 
@@ -248,19 +246,34 @@ class Edit extends Component {
   }
 
   render() {
-    console.log(this.textArray);
+    console.log('!');
     return(
       <div className="edit-wrapper">
         <input type="hidden" name="delete" value="false" />
         <input type="hidden" name="save" id="js-saveHtml"/>
-        <section className="blocks">
+        <section className={`blocks display ${this.state.activeClass}`}>
           <div className="blocks__box">
             <div className="blocks__inner">
-              <EditHeaderRender
-                headerValue={this.state.pageTitle}
-                selectLang={this.state.selectLangValue}
-                langText={this.state.textLangValue}
-              />
+              <header className="blocks__header">
+                <div className="blocks__title-wrapper">
+                  <EditHeaderRender
+                    headerValue={this.state.pageTitle}
+                  />
+                  <EditInput
+                    headerValue={this.state.pageTitle}
+                    headerValueChange={this.titleValueChange}
+                  />
+                </div>
+                <div className="blocks__lang-wrapper">
+                  <EditSelectLang
+                    textLangValue={this.state.textLangValue}
+                    textLangValueChange={this.textLangValueChange}
+                    selectLangList={this.langList}
+                    selectLangValue={this.state.selectLangValue}
+                    selectLangValueChange={this.selectValueChangeLang}
+                  />
+                </div>
+              </header>
               <section className="blocks__text">
                 <div className="blocks__time">
                   <p>{this.state.time}</p>
@@ -273,20 +286,7 @@ class Edit extends Component {
         </section>
 
         <div className={`edit ${this.state.activeClass}`}>
-          <div className="edit__inner">
-            <EditInput
-              headerValue={this.state.pageTitle}
-              headerValueChange={this.titleValueChange}
-            />
-            <EditSelectLang
-              textLangValue={this.state.textLangValue}
-              textLangValueChange={this.textLangValueChange}
-              selectLangList={this.langList}
-              selectLangValue={this.state.selectLangValue}
-              selectLangValueChange={this.selectValueChangeLang}
-            />
-            { this.addInputRender() }
-          </div>
+          
           <div className="edit__button-wrapper">
             <button
               type="button"
