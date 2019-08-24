@@ -1,0 +1,120 @@
+.display {
+  &__input-block {
+    @mixin position_centar;
+
+    height: 100%;
+    min-height: 2.4rem;
+
+    &--lang {
+      display: flex;
+    }
+
+    &--edit {
+      min-height: 4.8rem;
+    }
+  }
+
+  &__input {
+    @mixin input_display;
+
+    resize: none;
+    height: 100%;
+
+    &--header {
+      font-size: $fs_xs;
+      font-weight: bold;
+      letter-spacing: 0.1rem;
+      text-align: justify;
+      overflow: hidden;
+    }
+  }
+
+  &__input-select {
+    @mixin input_display;
+
+    &:focus {
+      border-bottom: none;
+    }
+
+    &--type {
+      height: 100%;
+    }
+  }
+
+  &__input-title {
+    &--lang {
+      display: inline-block;
+      color: transparent;
+    }
+  }
+
+  &__input-input {
+    &--lang {
+      display: inline-block;
+      color: transparent;
+    }
+  }
+
+  &__select-type {
+    position: absolute;
+    top: -2.4rem;
+    border-radius: 6px 0 6px 0px;
+    background-color: $color_pink;
+    color: $color_white;
+    height: 2.4rem;
+  }
+
+  &__h3 {
+    font-size: $fs_mx;
+    background-color: $color_mint_alpha;
+    padding: 0.8rem;
+    text-align: justify;
+  }
+
+  &__h4 {
+    font-size: $fs_mm;
+    border-bottom: 0.4rem solid $color_mint;
+    display: inline-block;
+    padding: 0.4rem;
+  }
+
+  &__p {
+    font-size: 1.4rem;
+    margin-top: 3.2rem;
+    white-space: pre-wrap;
+    margin: 0.8rem 0 0;
+  }
+
+  &__cmd {
+    margin-top: 0.8rem;
+    padding: 0.4rem;
+    background-color: $color_white_gray;
+    font-family: monospace, monospace;
+    font-size: 1em;
+  }
+
+  .blocks__title,
+  .blocks__description-title,
+  .blocks__paragraph {
+    color: transparent;
+    background-color: transparent;
+  }
+
+  .blocks__description-title {
+    border-bottom: none;
+  }
+
+  &.is-hide {
+    .edit__button--display,
+    .display__select-type {
+      display: none;
+    }
+  }
+}
+
+.is-display {
+  .display__text-wrapper,
+  .display__input-block {
+    display: none;
+  }
+}
