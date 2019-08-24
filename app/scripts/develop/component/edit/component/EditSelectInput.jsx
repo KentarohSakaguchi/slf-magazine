@@ -14,21 +14,33 @@ class EditSelectInput extends Component {
     this.removeInput = this.removeInput.bind(this);
 
     this.state = {
-      value: this.props.textValue
+      value: this.props.textValue,
+      selectedValue: this.props.selectedValue
     }
+
+    console.log(this.state.value);
   }
 
   /**
    * セレクトボックス
    */
   handleChange(setValue, textId) {
+    this.setState({
+      selectedValue: setValue
+    })
     const idNumber = Number(textId.replace('inputId', ''));
     return this.props.selectValue(setValue, idNumber)
   }
 
   setOption() {
     const items = this.props.selectValueList.map((_item, _number) => (
-      <option key={_number} value={_item.value}>{_item.text}</option>
+      (() => {
+        if (_item.value === this.state.selectedValue) {
+          return <option key={_number} value={_item.value} selected>{_item.text}</option>
+        } else {
+          return <option key={_number} value={_item.value}>{_item.text}</option>
+        }
+      })()
     ));
 
     return items;
@@ -64,31 +76,33 @@ class EditSelectInput extends Component {
   render() {
     this.setOption();
     return(
-      <div className="edit__input-block" id={this.props.textId}>
-        <label className="edit__input-title">
-          <select
-            className="edit__input-select"
-            onChange={(e) => this.handleChange(e.target.value, this.props.textId)}
-            name={`select${this.props.textId}`}
-          >
-            {this.setOption()}
-          </select>
-        </label>
-        <label className="edit__input-input">
-          {(() => {
-            return (
-              <textarea
-                className="edit__input"
-                placeholder="文言を入力"
-                value={this.state.value}
-                onChange={(e) => this.valueChange(e.target.value, this.props.textId)}
-                onKeyDown={(e) => this.keyCodeChange(e.keyCode, this.props.textId)}
-                name={this.props.textId}
-              />
-            );
-          })()}
-        </label>
-        <button type="button" className="edit__button edit__button--minus" onClick={this.removeInput}></button>
+      <div className="display__text-wrapper">
+        <div className="display__input-block display__input-block--edit" id={this.props.textId}>
+          <label className="display__select-type">
+            <select
+              className="display__input-select display__input-select--type"
+              onChange={(e) => this.handleChange(e.target.value, this.props.textId)}
+              name={`select${this.props.textId}`}
+            >
+              {this.setOption()}
+            </select>
+          </label>
+          <label className="display__input-input">
+            {(() => {
+              return (
+                <textarea
+                  className={`display__input display__${this.state.selectedValue}`}
+                  placeholder="文言を入力"
+                  value={this.state.value}
+                  onChange={(e) => this.valueChange(e.target.value, this.props.textId)}
+                  onKeyDown={(e) => this.keyCodeChange(e.keyCode, this.props.textId)}
+                  name={this.props.textId}
+                />
+              );
+            })()}
+          </label>
+          <button type="button" className="edit__button edit__button--minus edit__button--display" onClick={this.removeInput}></button>
+        </div>
       </div>
     );
   }
@@ -101,7 +115,8 @@ EditSelectInput.propTypes = {
   textValueChange: PropTypes.func,
   textValue: PropTypes.string,
   textId: PropTypes.string,
-  valueRemove: PropTypes.func
+  valueRemove: PropTypes.func,
+  selectedValue: PropTypes.array
 }
 
 export default EditSelectInput;
