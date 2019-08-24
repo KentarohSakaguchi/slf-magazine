@@ -129,7 +129,7 @@ const Data = (res, url_parse, pagename) => {
         delete: dataList.delete
       }
 
-      resultArray.push(wraiteDataAdmin);
+      resultArray.unshift(wraiteDataAdmin);
     }
 
   });
