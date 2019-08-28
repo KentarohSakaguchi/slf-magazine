@@ -94,7 +94,7 @@ const Data = (res, url_parse, pagename) => {
       }
 
       if (wraiteData.delete === 'false' || wraiteData.delete === false) {
-        resultArray.push(wraiteData);
+        resultArray.unshift(wraiteData);
       }
 
     } else if (pagename === 'index') {
@@ -112,7 +112,7 @@ const Data = (res, url_parse, pagename) => {
       }
 
       if (wraiteDataIndex.delete === 'false' || wraiteDataIndex.delete === false) {
-        resultArray.push(wraiteDataIndex);
+        resultArray.unshift(wraiteDataIndex);
       }
 
     } else if (pagename === 'admin') {
